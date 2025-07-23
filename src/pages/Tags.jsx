@@ -1,11 +1,9 @@
-"use client"
-
-import { useState } from "react"
-import BlogPostCard from "../components/BlogPostCard"
+import { useMemo } from "react"
 import RecentlyUpdated from "../components/RecentlyUpdated"
 import TrendingTags from "../components/TrendingTags"
+import { Link } from "react-router-dom"
 
-// Mock data for blog posts
+// Mock data for blog posts (same as Home)
 const blogPosts = [
   {
     id: 1,
@@ -62,33 +60,50 @@ const trendingTags = [
   "welcome",
 ]
 
-export default function Home() {
-  const [searchQuery, setSearchQuery] = useState("")
+function getAllTags(posts) {
+  const tagMap = {}
+  posts.forEach(post => {
+    post.tags.forEach(tag => {
+      tagMap[tag] = (tagMap[tag] || 0) + 1
+    })
+  })
+  return Object.entries(tagMap).map(([tag, count]) => ({ tag, count }))
+}
 
-  const filteredPosts = blogPosts.filter(
-    (post) =>
-      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase())),
-  )
+export default function Tags() {
+  const tags = useMemo(() => getAllTags(blogPosts), [])
 
   return (
     <div className="flex flex-1 overflow-hidden flex-col lg:flex-row">
-      {/* Blog Posts */}
-      <main className="flex-1 p-4 lg:p-6 overflow-y-auto" aria-label="Blog posts">
-        <div className="space-y-6">
-          {filteredPosts.length === 0 ? (
-            <div className="text-center text-gray-400 py-12">No blog posts found.</div>
-          ) : (
-            filteredPosts.map((post) => <BlogPostCard key={post.id} post={post} />)
-          )}
+      {/* Main Content */}
+      <main className="flex-1 p-4 lg:p-6 overflow-y-auto" aria-label="Tags">
+        {/* Breadcrumb */}
+        <nav className="text-sm text-gray-400 mb-6" aria-label="Breadcrumb">
+          <ol className="list-reset flex">
+            <li><Link to="/" className="hover:underline text-gray-300">Home</Link></li>
+            <li><span className="mx-2">›</span></li>
+            <li className="text-gray-100">Tags</li>
+          </ol>
+        </nav>
+        <h1 className="text-3xl font-bold mb-8 text-gray-100">Tags</h1>
+        <div className="flex flex-wrap gap-3">
+          {tags.map(({ tag, count }) => (
+            <button
+              key={tag}
+              className="flex items-center gap-2 px-4 py-2 rounded-full border border-blue-700 bg-gray-800 text-blue-300 font-medium shadow-sm hover:bg-blue-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-150 text-base"
+              style={{ boxShadow: "0 2px 8px 0 rgba(30,64,175,0.08)" }}
+            >
+              <span className="capitalize">{tag}</span>
+              <span className="ml-1 text-xs bg-blue-700 text-white rounded-full px-2 py-0.5">{count}</span>
+            </button>
+          ))}
         </div>
       </main>
       {/* Right Sidebar (hidden on mobile) */}
       <aside className="hidden lg:block lg:w-80 p-4 lg:p-6 space-y-6 overflow-y-auto" aria-label="Sidebar widgets">
         <RecentlyUpdated items={recentlyUpdated} />
-        <TrendingTags tags={trendingTags} setSearchQuery={setSearchQuery} />
+        <TrendingTags tags={trendingTags} setSearchQuery={() => {}} />
       </aside>
     </div>
   )
-}
+} 
