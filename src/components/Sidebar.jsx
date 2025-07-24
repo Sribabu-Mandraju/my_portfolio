@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom"
-import { Home, Tag,FlagTriangleRight ,Clock, User, Github, Twitter, Mail, Rss, Linkedin, TwitterIcon } from "lucide-react"
+import { Home, Tag,FlagTriangleRight ,Clock, User,  Mail } from "lucide-react"
 import { FaXTwitter } from "react-icons/fa6";
 import { FaGithub,FaLinkedin } from "react-icons/fa6";
 import { FaCode } from "react-icons/fa";
-
+import profileImg from '../assets/profile.jpeg';
 
 
 const navItems = [
@@ -26,13 +26,13 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }) {
         <div className="p-6 text-center border-b border-gray-700">
           <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden bg-gray-700">
             <img
-              src="/placeholder.svg?height=96&width=96"
-              alt="CYB3R_B01 Avatar"
+              src={profileImg}
+              alt="D4R3_W0LF Avatar"
               className="w-full h-full object-cover"
             />
           </div>
           <h2 className="text-xl font-bold text-gray-100 mb-1">D4R3_W0LF</h2>
-          <p className="text-gray-400 text-sm italic">No Quirk. Just skill.</p>
+          <p className="text-gray-400 text-sm italic">Break..Analyze..Secure</p>
         </div>
         {/* Navigation Menu */}
         <ul className="flex-1 p-4 space-y-2">
@@ -61,15 +61,15 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }) {
         <div className="p-4 border-t border-gray-700">
           <div className="flex justify-center space-x-4">
             {[
-              { icon: FaGithub, href: "#", label: "GitHub" },
-              { icon: FaXTwitter, href: "#", label: "Twitter" },
-              { icon: Mail, href: "#", label: "Email" },
-              // { icon: Rss, href: "#", label: "RSS" },
-              { icon: FaLinkedin, href: "#", label: "LinkedIn" },
+              { icon: FaGithub, href: "https://github.com/d4r3-w0lf",  label: "GitHub" },
+              { icon: FaXTwitter, href: "https://x.com/d4r3_w0lf", label: "Twitter" },
+              { icon: Mail, href: "nandeeshdevannagari@gmail.com", label: "Email" },
+              { icon: FaLinkedin, href: "https://www.linkedin.com/in/nandeesh-d", label: "LinkedIn" },
             ].map((social, index) => (
               <a
                 key={index}
                 href={social.href}
+                target="_blank"
                 className="text-gray-400 hover:text-white transition-colors  rounded"
                 aria-label={social.label}
                 tabIndex={0}

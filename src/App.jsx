@@ -26,7 +26,6 @@ const HackingPreloader = ({ isLoading, progress }) => {
     "Loading ethical hacking tools...",
     "Preparing digital fortress...",
     "Activating defense systems...",
-    "Welcome to CYB3R_B01's domain...",
   ]
 
   // Typewriter effect
@@ -103,8 +102,8 @@ const HackingPreloader = ({ isLoading, progress }) => {
             </div>
           </div>
 
-          <h1 className="text-2xl font-bold text-white mb-2">CYB3R_B01</h1>
-          <p className="text-gray-400 text-sm">Digital Fortress Loading...</p>
+          <h1 className="text-2xl font-bold text-white mb-2">D4R3_W0LF</h1>
+          <p className="text-gray-400 text-sm">Portfolio Loading...</p>
         </div>
 
         {/* Progress Bar */}

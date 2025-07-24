@@ -6,119 +6,119 @@ import TrendingTags from "../components/TrendingTags"
 import { Award, Trophy, Shield, Code, Target, Zap, Quote } from "lucide-react"
 
 // Mock data for blog posts
-const blogPosts = [
-  {
-    id: 1,
-    title: "Autopsy - Tutorial for N00bs",
-    description: 'This post consists of an article "Autopsy - Tutorial for N00bs"',
-    date: "Jul 23, 2025",
-    tags: ["Tutorial"],
-    category: "Tutorial",
-  },
-  {
-    id: 2,
-    title: "picoGym Forensics - Easy writeups",
-    description: "This post consists of writeups of the challenges CYB3R_B01 had solved in PicoCTF practice.",
-    date: "May 8, 2025",
-    tags: ["CTF", "PicoCTF"],
-    category: "CTF",
-  },
-  {
-    id: 3,
-    title: "TsukuCTF 2025 writeups",
-    description: "This post consists of writeups of the challenges CYB3R_B01 had solved in TsukuCTF 2025.",
-    date: "May 4, 2025",
-    tags: ["CTF", "TsukuCTF"],
-    category: "CTF",
-  },
-  {
-    id: 4,
-    title: "WolvCTF 2025 writeups",
-    description: "This post consists of writeups of the challenges CYB3R_B01 had solved in WolvCTF 2025.",
-    date: "Mar 27, 2025",
-    tags: ["CTF", "WolvCTF"],
-    category: "CTF",
-  },
-]
+ const blogPosts = [
+//   {
+//     id: 1,
+//     title: "Autopsy - Tutorial for N00bs",
+//     description: 'This post consists of an article "Autopsy - Tutorial for N00bs"',
+//     date: "Jul 23, 2025",
+//     tags: ["Tutorial"],
+//     category: "Tutorial",
+//   },
+//   {
+//     id: 2,
+//     title: "picoGym Forensics - Easy writeups",
+//     description: "This post consists of writeups of the challenges CYB3R_B01 had solved in PicoCTF practice.",
+//     date: "May 8, 2025",
+//     tags: ["CTF", "PicoCTF"],
+//     category: "CTF",
+//   },
+//   {
+//     id: 3,
+//     title: "TsukuCTF 2025 writeups",
+//     description: "This post consists of writeups of the challenges CYB3R_B01 had solved in TsukuCTF 2025.",
+//     date: "May 4, 2025",
+//     tags: ["CTF", "TsukuCTF"],
+//     category: "CTF",
+//   },
+//   {
+//     id: 4,
+//     title: "WolvCTF 2025 writeups",
+//     description: "This post consists of writeups of the challenges CYB3R_B01 had solved in WolvCTF 2025.",
+//     date: "Mar 27, 2025",
+//     tags: ["CTF", "WolvCTF"],
+//     category: "CTF",
+//   },
+ ]
 
 // Recent achievements data
 const achievements = [
   {
     id: 1,
-    title: "TsukuCTF 2025 - Top 50",
-    description: "Secured top 50 position in TsukuCTF 2025 competition",
-    date: "May 2025",
+    title: "BlitzCTF 2025",
+    description: "Secured 58th position in BlitzCTF 2025 competition",
+    date: "July 2025",
     icon: Trophy,
     color: "text-yellow-400",
     bgColor: "bg-yellow-400/10",
-  },
-  {
-    id: 2,
-    title: "PicoCTF Forensics Master",
-    description: "Completed all easy-level forensics challenges in picoGym",
-    date: "May 2025",
-    icon: Award,
-    color: "text-blue-400",
-    bgColor: "bg-blue-400/10",
-  },
-  {
-    id: 3,
-    title: "WolvCTF 2025 Participant",
-    description: "Successfully participated and solved multiple challenges",
-    date: "Mar 2025",
-    icon: Shield,
-    color: "text-green-400",
-    bgColor: "bg-green-400/10",
-  },
-  {
-    id: 4,
-    title: "Autopsy Forensics Expert",
-    description: "Created comprehensive tutorial for digital forensics beginners",
-    date: "Jul 2025",
-    icon: Target,
-    color: "text-purple-400",
-    bgColor: "bg-purple-400/10",
-  },
-  {
-    id: 5,
-    title: "Ethical Hacking Journey",
-    description: "Continuously learning and practicing ethical hacking techniques",
-    date: "Ongoing",
-    icon: Code,
-    color: "text-red-400",
-    bgColor: "bg-red-400/10",
-  },
-  {
-    id: 6,
-    title: "Cybersecurity Advocate",
-    description: "Promoting cybersecurity awareness through writeups and tutorials",
-    date: "2025",
-    icon: Zap,
-    color: "text-cyan-400",
-    bgColor: "bg-cyan-400/10",
-  },
+   },
+  // {
+  //   id: 2,
+  //   title: "PicoCTF Forensics Master",
+  //   description: "Completed all easy-level forensics challenges in picoGym",
+  //   date: "May 2025",
+  //   icon: Award,
+  //   color: "text-blue-400",
+  //   bgColor: "bg-blue-400/10",
+  // },
+  // {
+  //   id: 3,
+  //   title: "WolvCTF 2025 Participant",
+  //   description: "Successfully participated and solved multiple challenges",
+  //   date: "Mar 2025",
+  //   icon: Shield,
+  //   color: "text-green-400",
+  //   bgColor: "bg-green-400/10",
+  // },
+  // {
+  //   id: 4,
+  //   title: "Autopsy Forensics Expert",
+  //   description: "Created comprehensive tutorial for digital forensics beginners",
+  //   date: "Jul 2025",
+  //   icon: Target,
+  //   color: "text-purple-400",
+  //   bgColor: "bg-purple-400/10",
+  // },
+  // {
+  //   id: 5,
+  //   title: "Ethical Hacking Journey",
+  //   description: "Continuously learning and practicing ethical hacking techniques",
+  //   date: "Ongoing",
+  //   icon: Code,
+  //   color: "text-red-400",
+  //   bgColor: "bg-red-400/10",
+  // },
+  // {
+  //   id: 6,
+  //   title: "Cybersecurity Advocate",
+  //   description: "Promoting cybersecurity awareness through writeups and tutorials",
+  //   date: "2025",
+  //   icon: Zap,
+  //   color: "text-cyan-400",
+  //   bgColor: "bg-cyan-400/10",
+  // },
 ]
 
-const recentlyUpdated = [
-  "Autopsy - Tutorial for N00bs",
-  "TsukuCTF 2025 writeups",
-  "picoGym Forensics - Easy writeups",
-  "WolvCTF 2025 writeups",
-  "Welcome to My Blog 👋",
-]
+ const recentlyUpdated = [
+//   "Autopsy - Tutorial for N00bs",
+//   "TsukuCTF 2025 writeups",
+//   "picoGym Forensics - Easy writeups",
+//   "WolvCTF 2025 writeups",
+//   "Welcome to My Blog 👋",
+ ]
 
-const trendingTags = [
-  "cybersecurity",
-  "ctf",
-  "forensics",
-  "writeups",
-  "cryptography",
-  "pwn",
-  "osint",
-  "reverse-engineering",
-  "steganography",
-  "welcome",
-]
+ const trendingTags = [
+//   "cybersecurity",
+//   "ctf",
+//   "forensics",
+//   "writeups",
+//   "cryptography",
+//   "pwn",
+//   "osint",
+//   "reverse-engineering",
+//   "steganography",
+//   "welcome",
+ ]
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("")
@@ -143,15 +143,13 @@ export default function Home() {
     {/* Content */}
     <div className="relative z-10">
       <h1 className="text-3xl  lg:text-4xl  font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
-        Welcome to <span className="title-text md:text-5xl text-[#fff]">D4R3_W0LF</span>'s Digital Fortress
+        Welcome to <span className="title-text md:text-5xl text-[#fff]">D4R3_W0LF</span>'s Portfolio
       </h1>
       <p className="text-lg lg:text-xl text-gray-300 mb-4">
-        Ethical Hacker | CTF Player | Cybersecurity Enthusiast
+        Smart Contract Auditor | CTF Player
       </p>
       <p className="text-base text-gray-400">
-        Breaking code to build stronger defenses. Exploring the depths of cybersecurity through CTFs, forensics,
-        and ethical hacking.
-      </p>
+        Blockchain Security Researcher passionate about blockchain security and cryptography, currently developing expertise in vulnerability identification and decentralized system security through hands-on research.      </p>
     </div>
   </div>
 </div>
@@ -233,10 +231,10 @@ export default function Home() {
               </blockquote>
               <div className="flex items-center justify-center space-x-2 text-gray-400">
                 <div className="w-12 h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent"></div>
-                <span className="text-sm font-medium">CYB3R_B01</span>
+                <span className="text-sm font-medium">D4R3_W0LF</span>
                 <div className="w-12 h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent"></div>
               </div>
-              <p className="text-sm text-gray-500 mt-2">Ethical Hacker & Cybersecurity Enthusiast</p>
+              <p className="text-sm text-gray-500 mt-2">Smart Contract Auditor & Ethical Hacker</p>
             </div>
 
             {/* Subtle glow effect */}

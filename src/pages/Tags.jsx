@@ -58,7 +58,7 @@ const trendingTags = [
   "reverse-engineering",
   "steganography",
   "welcome",
-]
+]x
 
 function getAllTags(posts) {
   const tagMap = {}
