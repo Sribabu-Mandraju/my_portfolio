@@ -144,7 +144,7 @@ export default function Timeline() {
                 {/* Card */}
                 <div className="sm:w-1/2 sm:pl-6  sm:text-left">
                   <div className="ml-12 sm:ml-0 group">
-                    <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/70 backdrop-blur-sm rounded-xl px-4 py-3 border border-gray-700/50 shadow-lg hover:shadow-xl hover:shadow-blue-500/10 transition duration-300 hover:scale-[1.02] hover:border-blue-500/30">
+                    <div className="px-4 py-3   hover:shadow-xl hover:shadow-blue-500/10 transition duration-300 hover:scale-[1.02] hover:border-blue-500/30">
                       {/* Date - Mobile */}
                       <div className="flex items-center gap-3 mb-4 sm:hidden">
                         <div className="flex items-center gap-2 bg-gray-700/50 rounded-lg px-3 py-1">
