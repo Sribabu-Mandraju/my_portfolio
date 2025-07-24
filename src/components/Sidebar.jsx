@@ -31,7 +31,7 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }) {
               className="w-full h-full object-cover"
             />
           </div>
-          <h2 className="text-xl font-bold text-gray-100 mb-1">CYB3R_B01</h2>
+          <h2 className="text-xl font-bold text-gray-100 mb-1">D4R3_W0LF</h2>
           <p className="text-gray-400 text-sm italic">No Quirk. Just skill.</p>
         </div>
         {/* Navigation Menu */}
@@ -42,7 +42,7 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }) {
                 to={item.to}
                 end={item.to === "/"}
                 className={({ isActive }) =>
-                  `w-full flex items-center space-x-3 px-3 py-2 rounded-md text-left transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 ` +
+                  `w-full flex items-center space-x-3 px-3 py-2 rounded-md text-left transition-colors duration-200  ` +
                   (isActive
                     ? "bg-gray-700 text-white"
                     : "text-gray-300 hover:bg-gray-700 hover:text-white")
@@ -70,7 +70,7 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }) {
               <a
                 key={index}
                 href={social.href}
-                className="text-gray-400 hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
+                className="text-gray-400 hover:text-white transition-colors  rounded"
                 aria-label={social.label}
                 tabIndex={0}
               >

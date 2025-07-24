@@ -9,7 +9,7 @@ export default function BlogPostCard({ post }) {
     >
       <h2
         id={`post-title-${post.id}`}
-        className="text-xl font-semibold text-gray-100 mb-3 hover:text-blue-400 cursor-pointer transition-colors duration-200"
+        className="text-xl font-semibold text-blue-400 mb-3 hover:text-blue-600 cursor-pointer transition-colors duration-200"
       >
         {post.title}
       </h2>

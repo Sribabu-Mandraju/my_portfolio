@@ -1,5 +1,4 @@
 "use client"
-
 import React from "react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
@@ -27,7 +26,6 @@ import "github-markdown-css/github-markdown.css"
 // Table of Contents Component
 function TableOfContents({ headings, activeId }) {
   if (!headings.length) return null
-
   return (
     <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4 mb-6">
       <div className="flex items-center space-x-2 mb-3">
@@ -117,7 +115,6 @@ function CodeBlock({ className, children }) {
   const [isExpanded, setIsExpanded] = React.useState(false)
   const language = className ? className.replace("language-", "") : ""
   const isShell = /^(shell|bash|zsh|sh|console|terminal|cmd|powershell)$/i.test(language)
-
   const codeString = String(children).replace(/\n$/, "")
   const lineCount = codeString.split("\n").length
   const shouldCollapse = lineCount > 20
@@ -167,11 +164,14 @@ function CodeBlock({ className, children }) {
           </div>
         </div>
         <div
-          className={`p-4 bg-gray-900 transition-all duration-300 ${
+          className={` bg-gray-900 transition-all duration-300 ${
             shouldCollapse && !isExpanded ? "max-h-64 overflow-hidden" : ""
           }`}
         >
-          <pre className="text-green-400 bg-tran font-mono text-sm leading-relaxed overflow-x-auto">
+          <pre
+            style={{ backgroundColor: "transparent" }}
+            className="text-green-400 bg-none font-mono text-sm leading-relaxed overflow-x-auto"
+          >
             <code>{codeString}</code>
           </pre>
           {shouldCollapse && !isExpanded && (
@@ -240,9 +240,9 @@ function CodeBlock({ className, children }) {
             fontFamily: 'Fira Code, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
           }}
           codeTagProps={{
-            style:{
-              background:"none"
-            }
+            style: {
+              background: "none",
+            },
           }}
           lineNumberStyle={{
             color: "#6b7280",
@@ -306,7 +306,6 @@ function VideoPlayer({ src, alt, ...props }) {
         >
           Your browser does not support the video tag.
         </video>
-
         {/* Custom controls overlay */}
         <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-200">
           <div className="flex items-center space-x-2">
@@ -345,7 +344,6 @@ function extractHeadings(content) {
   const headingRegex = /^(#{1,6})\s+(.+)$/gm
   const headings = []
   let match
-
   while ((match = headingRegex.exec(content)) !== null) {
     const level = match[1].length
     const text = match[2].trim()
@@ -355,7 +353,6 @@ function extractHeadings(content) {
       .replace(/\s+/g, "-")
     headings.push({ level, text, id })
   }
-
   return headings
 }
 
@@ -365,13 +362,11 @@ function rewriteImageUrls(markdown) {
   result = result.replace(/src=["']\.\.\/images[\\/]([^"'>]+)["']/g, 'src="/images/$1"')
   result = result.replace(/src=["']\.\/images[\\/]([^"'>]+)["']/g, 'src="/images/$1"')
   result = result.replace(/src=["']images[\\/]([^"'>]+)["']/g, 'src="/images/$1"')
-
   // Handle markdown image syntax
   result = result.replace(/!\[([^\]]*)\]$$public\/([^)]+)$$/g, "![$1](/$2)")
   result = result.replace(/!\[([^\]]*)\]$$\.\.\/images\/([^)]+)$$/g, "![$1](/images/$2)")
   result = result.replace(/!\[([^\]]*)\]$$\.\/images\/([^)]+)$$/g, "![$1](/images/$2)")
   result = result.replace(/!\[([^\]]*)\]$$images\/([^)]+)$$/g, "![$1](/images/$2)")
-
   return result
 }
 
@@ -392,6 +387,7 @@ function MarkdownRenderer({ url }) {
 
     setLoading(true)
     setError(null)
+
     fetch(url)
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`)
@@ -460,7 +456,6 @@ function MarkdownRenderer({ url }) {
     if (/^(https?:)?\/\//.test(src) || src.startsWith("data:") || src.startsWith("blob:")) {
       return src
     }
-
     // If it starts with /, it's already an absolute path
     if (src.startsWith("/")) {
       return src
@@ -469,7 +464,6 @@ function MarkdownRenderer({ url }) {
     try {
       const mdUrl = new URL(url)
       const basePath = mdUrl.pathname.replace(/\/[^/]*$/, "/")
-
       // Handle relative paths
       if (src.startsWith("./")) {
         return new URL(basePath + src.substring(2), mdUrl.origin).toString()
@@ -500,8 +494,8 @@ function MarkdownRenderer({ url }) {
     <div className="max-w-none">
       <ReadingProgress />
 
-      {/* Article Meta Info */}
-      <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4 mb-6">
+      {/* Mobile Article Meta Info - Top positioned */}
+      <div className="lg:hidden bg-gray-800/50 border border-gray-700 rounded-lg p-4 mb-6">
         <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400">
           <div className="flex items-center space-x-2">
             <BookOpen className="w-4 h-4" />
@@ -527,265 +521,281 @@ function MarkdownRenderer({ url }) {
         </div>
       </div>
 
-      {/* Table of Contents */}
-      <TableOfContents headings={headings} activeId={activeHeading} />
+      {/* Desktop Layout with Left Sidebar */}
+      <div className="flex flex-col lg:flex-row gap-6">
+        {/* Left Sidebar - Desktop Article Meta Info */}
+        <aside className="hidden lg:block lg:w-64 flex-shrink-0">
+          <div className="sticky top-6 space-y-6">
+            {/* Article Meta Info */}
+            <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4">
+              <h3 className="text-sm font-semibold text-gray-300 mb-3 flex items-center">
+                <BookOpen className="w-4 h-4 mr-2" />
+                Article Info
+              </h3>
+              <div className="space-y-3 text-sm text-gray-400">
+                <div className="flex items-center space-x-2">
+                  <Clock className="w-4 h-4" />
+                  <span>{readingTime} min read</span>
+                </div>
+                {/* <div className="flex items-center space-x-2">
+                  <Eye className="w-4 h-4" />
+                  <span>{content.split(" ").length} words</span>
+                </div> */}
+                {/* <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors duration-200"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  <span>View Source</span>
+                </a> */}
+              </div>
+            </div>
 
-      {/* GitHub CSS Dark Theme Override */}
-      <style>{`
-        .markdown-body {
-          --color-canvas-default: #1f2937;
-          --color-canvas-subtle: #374151;
-          --color-border-default: #4b5563;
-          --color-border-muted: #6b7280;
-          --color-neutral-muted: rgba(110, 118, 129, 0.4);
-          --color-accent-fg: #58a6ff;
-          --color-accent-emphasis: #1f6feb;
-          --color-attention-subtle: rgba(187, 128, 9, 0.15);
-          --color-danger-fg: #f85149;
-          --color-fg-default: #e6edf3;
-          --color-fg-muted: #7d8590;
-          --color-fg-subtle: #6e7681;
-          --color-canvas-inset: #0d1117;
-          background-color: var(--color-canvas-default);
-          color: var(--color-fg-default);
-          font-size: 16px;
-          line-height: 1.6;
-        }
+            {/* Table of Contents - Desktop */}
+            <TableOfContents headings={headings} activeId={activeHeading} />
+          </div>
+        </aside>
 
-        .markdown-body h1,
-        .markdown-body h2,
-        .markdown-body h3,
-        .markdown-body h4,
-        .markdown-body h5,
-        .markdown-body h6 {
-          color: var(--color-fg-default);
-          border-bottom-color: var(--color-border-muted);
-          scroll-margin-top: 2rem;
-        }
+        {/* Main Content */}
+        <div className="flex-1 min-w-0">
+          {/* Mobile Table of Contents */}
+          <div className="lg:hidden">
+            <TableOfContents headings={headings} activeId={activeHeading} />
+          </div>
 
-        .markdown-body blockquote {
-          color: var(--color-fg-muted);
-          border-left-color: var(--color-border-default);
-          background-color: rgba(110, 118, 129, 0.1);
-        }
+          {/* GitHub CSS Dark Theme Override */}
+          <style>{`
+            .markdown-body {
+              --color-canvas-default: #1f2937;
+              --color-canvas-subtle: #374151;
+              --color-border-default: #4b5563;
+              --color-border-muted: #6b7280;
+              --color-neutral-muted: rgba(110, 118, 129, 0.4);
+              --color-accent-fg: #58a6ff;
+              --color-accent-emphasis: #1f6feb;
+              --color-attention-subtle: rgba(187, 128, 9, 0.15);
+              --color-danger-fg: #f85149;
+              --color-fg-default: #e6edf3;
+              --color-fg-muted: #7d8590;
+              --color-fg-subtle: #6e7681;
+              --color-canvas-inset: #0d1117;
+              background-color: var(--color-canvas-default);
+              color: var(--color-fg-default);
+              font-size: 16px;
+              line-height: 1.6;
+            }
+            .markdown-body h1,
+            .markdown-body h2,
+            .markdown-body h3,
+            .markdown-body h4,
+            .markdown-body h5,
+            .markdown-body h6 {
+              color: var(--color-fg-default);
+              border-bottom-color: var(--color-border-muted);
+              scroll-margin-top: 2rem;
+            }
+            .markdown-body blockquote {
+              color: var(--color-fg-muted);
+              border-left-color: var(--color-border-default);
+              background-color: rgba(110, 118, 129, 0.1);
+            }
+            .markdown-body table th,
+            .markdown-body table td {
+              border-color: var(--color-border-muted);
+            }
+            .markdown-body table th {
+              background-color: var(--color-canvas-subtle);
+            }
+            .markdown-body table tr:nth-child(2n) {
+              background-color: rgba(110, 118, 129, 0.05);
+            }
+            .markdown-body code {
+              color: var(--color-fg-default);
+              padding: 0.2em 0.4em;
+              border-radius: 3px;
+              background-color: transparent;
+            }
+            .markdown-body a {
+              color: var(--color-accent-fg);
+            }
+            .markdown-body a:hover {
+              text-decoration: underline;
+            }
+            .markdown-body hr {
+              background-color: var(--color-border-muted);
+            }
+            .markdown-body img {
+              background-color: var(--color-canvas-default);
+              border-radius: 8px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+            .markdown-body p {
+              margin-bottom: 1rem;
+            }
+            .markdown-body ul, .markdown-body ol {
+              margin-bottom: 1rem;
+            }
+            .markdown-body li {
+              margin-bottom: 0.25rem;
+            }
+            /* Smooth scrolling */
+            html {
+              scroll-behavior: smooth;
+            }
+            /* Selection styling */
+            .markdown-body ::selection {
+              background-color: rgba(88, 166, 255, 0.3);
+            }
+          `}</style>
 
-        .markdown-body table th,
-        .markdown-body table td {
-          border-color: var(--color-border-muted);
-        }
-
-        .markdown-body table th {
-          background-color: var(--color-canvas-subtle);
-        }
-
-        .markdown-body table tr:nth-child(2n) {
-          background-color: rgba(110, 118, 129, 0.05);
-        }
-
-        .markdown-body code {
-          color: var(--color-fg-default);
-          padding: 0.2em 0.4em;
-          border-radius: 3px;
-          background-color: transparent;
-        }
-
-        .markdown-body pre {
-          background-color: var(--color-canvas-subtle);
-        }
-
-        .markdown-body a {
-          color: var(--color-accent-fg);
-        }
-
-        .markdown-body a:hover {
-          text-decoration: underline;
-        }
-
-        .markdown-body hr {
-          background-color: var(--color-border-muted);
-        }
-
-        .markdown-body img {
-          background-color: var(--color-canvas-default);
-          border-radius: 8px;
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .markdown-body p {
-          margin-bottom: 1rem;
-        }
-
-        .markdown-body ul, .markdown-body ol {
-          margin-bottom: 1rem;
-        }
-
-        .markdown-body li {
-          margin-bottom: 0.25rem;
-        }
-
-        /* Smooth scrolling */
-        html {
-          scroll-behavior: smooth;
-        }
-
-        /* Selection styling */
-        .markdown-body ::selection {
-          background-color: rgba(88, 166, 255, 0.3);
-        }
-      `}</style>
-
-      <div className="bg-gray-800 rounded-xl border border-gray-700 p-6 lg:p-8 shadow-lg w-full" >
-        <div className="markdown-body">
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            components={{
-              code({ node, inline, className, children, ...props }) {
-                if (inline) {
-                  return <code {...props}>{children}</code>
-                }
-                return <CodeBlock className={className}>{children}</CodeBlock>
-              },
-
-              img({ src, alt, ...props }) {
-                const resolvedSrc = resolveImageUrl(src)
-
-                // Check if it's a video file
-                if (isVideoFile(resolvedSrc)) {
-                  return <VideoPlayer src={resolvedSrc} alt={alt} {...props} />
-                }
-
-                return (
-                  <div className="my-6 text-center">
-                    <img
-                      src={resolvedSrc || "/placeholder.svg"}
-                      alt={alt || ""}
-                      className="max-w-full h-auto rounded-lg border border-gray-600 shadow-lg mx-auto cursor-pointer transition-transform duration-200 hover:scale-105"
-                      onClick={() => window.open(resolvedSrc, "_blank")}
-                      title="Click to view full size"
-                      onError={(e) => {
-                        console.error("Failed to load image:", resolvedSrc)
-                        e.target.src = "/placeholder.svg?height=400&width=600&text=Image+Not+Found"
-                      }}
-                      loading="lazy"
-                      {...props}
-                    />
-                    {alt && <p className="text-sm text-gray-500 mt-2 italic">{alt}</p>}
-                  </div>
-                )
-              },
-
-              // Handle HTML video tags
-              video({ src, ...props }) {
-                const resolvedSrc = resolveImageUrl(src)
-                return <VideoPlayer src={resolvedSrc} {...props} />
-              },
-
-              // Handle HTML img tags
-              // eslint-disable-next-line jsx-a11y/alt-text
-              img: ({ src, alt, ...props }) => {
-                const resolvedSrc = resolveImageUrl(src)
-
-                if (isVideoFile(resolvedSrc)) {
-                  return <VideoPlayer src={resolvedSrc} alt={alt} {...props} />
-                }
-
-                return (
-                  <div className="my-6 text-center">
-                    <img
-                      src={resolvedSrc || "/placeholder.svg"}
-                      alt={alt || ""}
-                      className="max-w-full h-auto rounded-lg border border-gray-600 shadow-lg mx-auto cursor-pointer transition-transform duration-200 hover:scale-105"
-                      onClick={() => window.open(resolvedSrc, "_blank")}
-                      title="Click to view full size"
-                      onError={(e) => {
-                        console.error("Failed to load image:", resolvedSrc)
-                        e.target.src = "/placeholder.svg?height=400&width=600&text=Image+Not+Found"
-                      }}
-                      loading="lazy"
-                      {...props}
-                    />
-                    {alt && <p className="text-sm text-gray-500 mt-2 italic">{alt}</p>}
-                  </div>
-                )
-              },
-
-              // Add IDs to headings for TOC navigation
-              h1({ children, ...props }) {
-                const text = children.toString()
-                const id = text
-                  .toLowerCase()
-                  .replace(/[^\w\s-]/g, "")
-                  .replace(/\s+/g, "-")
-                return (
-                  <h1 id={id} {...props}>
-                    {children}
-                  </h1>
-                )
-              },
-              h2({ children, ...props }) {
-                const text = children.toString()
-                const id = text
-                  .toLowerCase()
-                  .replace(/[^\w\s-]/g, "")
-                  .replace(/\s+/g, "-")
-                return (
-                  <h2 id={id} {...props}>
-                    {children}
-                  </h2>
-                )
-              },
-              h3({ children, ...props }) {
-                const text = children.toString()
-                const id = text
-                  .toLowerCase()
-                  .replace(/[^\w\s-]/g, "")
-                  .replace(/\s+/g, "-")
-                return (
-                  <h3 id={id} {...props}>
-                    {children}
-                  </h3>
-                )
-              },
-              h4({ children, ...props }) {
-                const text = children.toString()
-                const id = text
-                  .toLowerCase()
-                  .replace(/[^\w\s-]/g, "")
-                  .replace(/\s+/g, "-")
-                return (
-                  <h4 id={id} {...props}>
-                    {children}
-                  </h4>
-                )
-              },
-              h5({ children, ...props }) {
-                const text = children.toString()
-                const id = text
-                  .toLowerCase()
-                  .replace(/[^\w\s-]/g, "")
-                  .replace(/\s+/g, "-")
-                return (
-                  <h5 id={id} {...props}>
-                    {children}
-                  </h5>
-                )
-              },
-              h6({ children, ...props }) {
-                const text = children.toString()
-                const id = text
-                  .toLowerCase()
-                  .replace(/[^\w\s-]/g, "")
-                  .replace(/\s+/g, "-")
-                return (
-                  <h6 id={id} {...props}>
-                    {children}
-                  </h6>
-                )
-              },
-            }}
-          >
-            {content}
-          </ReactMarkdown>
+          <div className="bg-gray-800 rounded-xl border border-gray-700 p-6 lg:p-8 shadow-lg w-full">
+            <div className="markdown-body">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  code({ node, inline, className, children, ...props }) {
+                    if (inline) {
+                      return <code {...props}>{children}</code>
+                    }
+                    return <CodeBlock className={className}>{children}</CodeBlock>
+                  },
+                  img({ src, alt, ...props }) {
+                    const resolvedSrc = resolveImageUrl(src)
+                    // Check if it's a video file
+                    if (isVideoFile(resolvedSrc)) {
+                      return <VideoPlayer src={resolvedSrc} alt={alt} {...props} />
+                    }
+                    return (
+                      <div className="my-6 text-center">
+                        <img
+                          src={resolvedSrc || "/placeholder.svg"}
+                          alt={alt || ""}
+                          className="max-w-full h-auto rounded-lg border border-gray-600 shadow-lg mx-auto cursor-pointer transition-transform duration-200 hover:scale-105"
+                          onClick={() => window.open(resolvedSrc, "_blank")}
+                          title="Click to view full size"
+                          onError={(e) => {
+                            console.error("Failed to load image:", resolvedSrc)
+                            e.target.src = "/placeholder.svg?height=400&width=600&text=Image+Not+Found"
+                          }}
+                          loading="lazy"
+                          {...props}
+                        />
+                        {alt && <p className="text-sm text-gray-500 mt-2 italic">{alt}</p>}
+                      </div>
+                    )
+                  },
+                  // Handle HTML video tags
+                  video({ src, ...props }) {
+                    const resolvedSrc = resolveImageUrl(src)
+                    return <VideoPlayer src={resolvedSrc} {...props} />
+                  },
+                  // Handle HTML img tags
+                  // eslint-disable-next-line jsx-a11y/alt-text
+                  img: ({ src, alt, ...props }) => {
+                    const resolvedSrc = resolveImageUrl(src)
+                    if (isVideoFile(resolvedSrc)) {
+                      return <VideoPlayer src={resolvedSrc} alt={alt} {...props} />
+                    }
+                    return (
+                      <div className="my-6 text-center">
+                        <img
+                          src={resolvedSrc || "/placeholder.svg"}
+                          alt={alt || ""}
+                          className="max-w-full h-auto rounded-lg border border-gray-600 shadow-lg mx-auto cursor-pointer transition-transform duration-200 hover:scale-105"
+                          onClick={() => window.open(resolvedSrc, "_blank")}
+                          title="Click to view full size"
+                          onError={(e) => {
+                            console.error("Failed to load image:", resolvedSrc)
+                            e.target.src = "/placeholder.svg?height=400&width=600&text=Image+Not+Found"
+                          }}
+                          loading="lazy"
+                          {...props}
+                        />
+                        {alt && <p className="text-sm text-gray-500 mt-2 italic">{alt}</p>}
+                      </div>
+                    )
+                  },
+                  // Add IDs to headings for TOC navigation
+                  h1({ children, ...props }) {
+                    const text = children.toString()
+                    const id = text
+                      .toLowerCase()
+                      .replace(/[^\w\s-]/g, "")
+                      .replace(/\s+/g, "-")
+                    return (
+                      <h1 id={id} {...props}>
+                        {children}
+                      </h1>
+                    )
+                  },
+                  h2({ children, ...props }) {
+                    const text = children.toString()
+                    const id = text
+                      .toLowerCase()
+                      .replace(/[^\w\s-]/g, "")
+                      .replace(/\s+/g, "-")
+                    return (
+                      <h2 id={id} {...props}>
+                        {children}
+                      </h2>
+                    )
+                  },
+                  h3({ children, ...props }) {
+                    const text = children.toString()
+                    const id = text
+                      .toLowerCase()
+                      .replace(/[^\w\s-]/g, "")
+                      .replace(/\s+/g, "-")
+                    return (
+                      <h3 id={id} {...props}>
+                        {children}
+                      </h3>
+                    )
+                  },
+                  h4({ children, ...props }) {
+                    const text = children.toString()
+                    const id = text
+                      .toLowerCase()
+                      .replace(/[^\w\s-]/g, "")
+                      .replace(/\s+/g, "-")
+                    return (
+                      <h4 id={id} {...props}>
+                        {children}
+                      </h4>
+                    )
+                  },
+                  h5({ children, ...props }) {
+                    const text = children.toString()
+                    const id = text
+                      .toLowerCase()
+                      .replace(/[^\w\s-]/g, "")
+                      .replace(/\s+/g, "-")
+                    return (
+                      <h5 id={id} {...props}>
+                        {children}
+                      </h5>
+                    )
+                  },
+                  h6({ children, ...props }) {
+                    const text = children.toString()
+                    const id = text
+                      .toLowerCase()
+                      .replace(/[^\w\s-]/g, "")
+                      .replace(/\s+/g, "-")
+                    return (
+                      <h6 id={id} {...props}>
+                        {children}
+                      </h6>
+                    )
+                  },
+                }}
+              >
+                {content}
+              </ReactMarkdown>
+            </div>
+          </div>
         </div>
       </div>
 

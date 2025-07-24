@@ -27,7 +27,7 @@ export const writeups = [
             file: "statemindctf25.md",
             title: "Statemind Web3 CTF 2025 - Main Writeup",
             tags: ["web3", "ctf", "2025"],
-            url: "https://raw.githubusercontent.com/TheMj0ln1r/novel-cryptography-project/refs/heads/main/README.md",
+            url: "https://raw.githubusercontent.com/0xC1ph3r-08/my-blog/refs/heads/main/docs/PICOCTF/Cryptography/Medium/Basic-mod1.md",
             date: "2025-01-14",
           },
       ],

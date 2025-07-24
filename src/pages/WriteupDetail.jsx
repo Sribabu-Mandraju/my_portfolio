@@ -11,7 +11,7 @@ export default function WriteupDetail() {
   if (!writeup) {
     return (
       <div className="flex flex-1 overflow-hidden flex-col">
-        <main className="flex-1 p-4 lg:p-6 overflow-y-auto">
+        <main className="flex-1 p-4 lg:p-6 h-auto">
           <div className="max-w-4xl mx-auto">
             {/* Back Button */}
             <Link to="/ctfs" className="inline-flex items-center space-x-2 text-blue-400 hover:text-blue-300 mb-6">
@@ -71,10 +71,10 @@ export default function WriteupDetail() {
                     <Calendar className="w-4 h-4" />
                     <span>{formatDate(writeup.date)}</span>
                   </span>
-                  <span className="flex items-center space-x-1">
+                  {/* <span className="flex items-center space-x-1">
                     <FileText className="w-4 h-4" />
                     <span>{writeup.file}</span>
-                  </span>
+                  </span> */}
                   {writeup.categoryName && (
                     <span className="px-3 py-1 bg-gray-700 rounded-full text-xs">{writeup.categoryName}</span>
                   )}
@@ -95,7 +95,7 @@ export default function WriteupDetail() {
                 )}
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 mt-4 lg:mt-0">
+              {/* <div className="flex flex-col sm:flex-row gap-3 mt-4 lg:mt-0">
                 {writeup.url && (
                   <a
                     href={writeup.url}
@@ -107,37 +107,27 @@ export default function WriteupDetail() {
                     View Source
                   </a>
                 )}
-              </div>
+              </div> */}
             </div>
           </div>
 
           {/* Markdown Content */}
-          <div className="mb-8">
+          <div className="mb-8 ">
             <MarkdownRenderer url={writeup.url} />
           </div>
 
           {/* Footer Navigation */}
-          <div className="bg-gray-800 rounded-xl border border-gray-700 p-6">
+          <div className=" rounded-xl  p-6">
             <div className="flex flex-col sm:flex-row items-center justify-between">
               <Link
                 to="/ctfs"
                 className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors mb-4 sm:mb-0"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to All CTFs
+                Back 
               </Link>
 
-              <div className="text-sm text-gray-400 text-center sm:text-right">
-                <p>Found an issue with this writeup?</p>
-                <a
-                  href={writeup.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-400 hover:text-blue-300 underline"
-                >
-                  View on GitHub
-                </a>
-              </div>
+              
             </div>
           </div>
         </div>
