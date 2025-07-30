@@ -1,6 +1,8 @@
 "use client"
 
 import { MapPin, Mail, Phone, Github, Linkedin, Globe, Twitter } from 'lucide-react'
+import { FaXTwitter } from "react-icons/fa6";
+
 
 export default function AboutHero({ personalInfo }) {
   return (
@@ -57,7 +59,7 @@ export default function AboutHero({ personalInfo }) {
                   <Linkedin className="w-4 h-4 text-white" />
                   <span className="text-sm">LinkedIn</span>
                 </a>
-                <a
+                {/* <a
                   href={personalInfo.portfolio}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -65,14 +67,14 @@ export default function AboutHero({ personalInfo }) {
                 >
                   <Globe className="w-4 h-4 text-white" />
                   <span className="text-sm">Portfolio</span>
-                </a>
+                </a> */}  
                 <a
                   href={personalInfo.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-3 py-2 bg-cyan-800 hover:bg-cyan-700 rounded-lg transition-colors duration-200"
                 >
-                  <Twitter className="w-4 h-4 text-white" />
+                  <FaXTwitter className="w-4 h-4 text-white" />
                   <span className="text-sm">Twitter</span>
                 </a>
               </div>

@@ -3,13 +3,15 @@ import { Home, Tag,FlagTriangleRight ,Clock, User,  Mail } from "lucide-react"
 import { FaXTwitter } from "react-icons/fa6";
 import { FaGithub,FaLinkedin } from "react-icons/fa6";
 import { FaCode } from "react-icons/fa";
-import profileImg from '../assets/profile.jpeg';
+import profileImg from '../assets/meee.jpg';
+import { FaBook } from "react-icons/fa6";
+
 
 
 const navItems = [
   { name: "HOME", icon: Home, to: "/" },
   { name: "CTFS", icon: FlagTriangleRight , to: "/ctfs" },
-  { name: "BLOGS", icon: FaCode, to: "/blogs" },
+  { name: "BLOGS", icon: FaBook, to: "/blogs" },
   { name: "PROJECTS", icon: FaCode, to: "/projects" },
   { name: "TIMELINE", icon: Clock, to: "/timeline" },
   { name: "ABOUT", icon: User, to: "/about" },
@@ -31,8 +33,8 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }) {
               className="w-full h-full object-cover"
             />
           </div>
-          <h2 className="text-xl font-bold text-gray-100 mb-1">D4R3_W0LF</h2>
-          <p className="text-gray-400 text-sm italic">Break..Analyze..Secure</p>
+          <h2 className="text-xl font-bold text-gray-100 mb-1">ᴀᴠɢ ꜱᴘɪᴅᴇʏ࿐</h2>
+          <p className="text-gray-400 text-sm italic">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन</p>
         </div>
         {/* Navigation Menu */}
         <ul className="flex-1 p-4 space-y-2">

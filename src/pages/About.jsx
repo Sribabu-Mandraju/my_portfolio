@@ -16,7 +16,7 @@ const personalInfo = {
   email: "sribabumandraju@gmail.com",
   phone: "+91 63037 38847",
   location: "Hyderabad, India",
-  portfolio: "https://portfolio-35c3.vercel.app/",
+  // portfolio: "https://portfolio-35c3.vercel.app/",
   github: "https://github.com/Sribabu-Mandraju",
   linkedin: "https://www.linkedin.com/in/sribabu-mandraju/",
   twitter: "https://x.com/5R1B4BU",
