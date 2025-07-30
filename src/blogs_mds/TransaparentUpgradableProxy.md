@@ -1,3 +1,6 @@
+Here's the properly formatted markdown file maintaining all your original content without adding extra details:
+
+```markdown
 # Transparent Upgradable Proxy Contracts
 
 ## The Need for Proxy Contracts
@@ -26,12 +29,15 @@ contract VersionTwo {
 ```
 
 ---
-In blockchain if smart contract once deployed we cannot update the functionality of the contract becuase they are immutable by nature , to upgrade functionality of the contract we have redeploy the contract and there will be no data persist in that newly deployed contract . so in order to persist data even after upgrading a smart contract we will use proxy contracts 
-## what are proxy contracts ?
 
-proxy contract is the contract in which we store data but to perform functionalities on data we will depend on another contracts which are called implementation contracts 
-in simple we will borrom the code of another smart contract and use that code login to perform any operations on our data . so in order to understand proxy contract we have to understand delegate call .
+In blockchain if smart contract once deployed we cannot update the functionality of the contract because they are immutable by nature. To upgrade functionality of the contract we have to redeploy the contract and there will be no data persist in that newly deployed contract. So in order to persist data even after upgrading a smart contract we will use proxy contracts.
+
+## What are Proxy Contracts?
+
+Proxy contract is the contract in which we store data but to perform functionalities on data we will depend on another contracts which are called implementation contracts. In simple terms, we will borrow the code of another smart contract and use that code logic to perform any operations on our data. So in order to understand proxy contract we have to understand delegate call.
+
 ---
+
 ## How Proxies Help
 
 - Maintain existing storage (count value remains 5)
@@ -62,25 +68,23 @@ function delegateCallSetValue(address targetContract, uint256 _value) public {
     );
     require(success, "Call failed");
 }
-
 ```
 
-in final contract A look like 
+In final contract A looks like:
 ```solidity
 contract A {
     uint256 public primaryValueInContractA;
 
     function delegateCallSetValue(address targetContract, uint256 _value) public {
-    (bool success, ) = targetContract.delegatecall(
-        abi.encodeWithSignature("setPrimaryValue(uint256)", _value)
-    );
-    require(success, "Call failed");
+        (bool success, ) = targetContract.delegatecall(
+            abi.encodeWithSignature("setPrimaryValue(uint256)", _value)
+        );
+        require(success, "Call failed");
+    }
 }
-}
-
 ```
 
-- if we notice the variable name in contract A differ from variable name in contract B which stores our primaryVariable but while using delegate call we should focus on variable's storage slot not the name or identifier of the variable 
+- If we notice the variable name in contract A differs from variable name in contract B which stores our primaryVariable, but while using delegate call we should focus on variable's storage slot not the name or identifier of the variable.
 
 ## Transparent Proxy Implementation
 
@@ -102,4 +106,5 @@ contract Proxy {
         // delegatecall to implementation
     }
 }
+```
 ```
