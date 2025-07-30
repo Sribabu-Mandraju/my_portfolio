@@ -28,6 +28,7 @@ contract VersionTwo {
 ---
 In blockchain if smart contract once deployed we cannot update the functionality of the contract becuase they are immutable by nature , to upgrade functionality of the contract we have redeploy the contract and there will be no data persist in that newly deployed contract . so in order to persist data even after upgrading a smart contract we will use proxy contracts 
 ## what are proxy contracts ?
+
 proxy contract is the contract in which we store data but to perform functionalities on data we will depend on another contracts which are called implementation contracts 
 in simple we will borrom the code of another smart contract and use that code login to perform any operations on our data . so in order to understand proxy contract we have to understand delegate call .
 ---
