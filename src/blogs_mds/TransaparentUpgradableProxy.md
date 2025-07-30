@@ -1,4 +1,3 @@
-```markdown
 # Transparent Upgradable Proxy Contracts
 
 ## The Need for Proxy Contracts
