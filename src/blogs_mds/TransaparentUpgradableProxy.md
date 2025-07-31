@@ -1,3 +1,6 @@
+Here's your content formatted for better readability while maintaining all the original information:
+
+---
 
 # Transparent Upgradable Proxy Contracts
 
@@ -25,20 +28,17 @@ contract VersionTwo {
 }
 ```
 
----
-
-In blockchain if smart contract once deployed we cannot update the functionality of the contract because they are immutable by nature. To upgrade functionality of the contract we have to redeploy the contract and there will be no data persist in that newly deployed contract. So in order to persist data even after upgrading a smart contract we will use proxy contracts.
+In blockchain, if a smart contract is once deployed we cannot update its functionality because they are immutable by nature. To upgrade a contract's functionality, we have to redeploy it, but the newly deployed contract won't have the previous data. Proxy contracts solve this by allowing data persistence across upgrades.
 
 ## What are Proxy Contracts?
 
-Proxy contract is the contract in which we store data but to perform functionalities on data we will depend on another contracts which are called implementation contracts. In simple terms, we will borrow the code of another smart contract and use that code logic to perform any operations on our data. So in order to understand proxy contract we have to understand delegate call.
+A proxy contract stores data but delegates functionality to implementation contracts. In simple terms, it borrows code from another smart contract to perform operations on its own data. Understanding proxy contracts requires understanding `delegatecall`.
 
 ---
 
-
 ## Understanding Delegatecall
 
-Delegatecall enables borrowing functionality from another contract:
+`delegatecall` enables borrowing functionality from another contract:
 
 ```solidity
 contract A {
@@ -62,7 +62,8 @@ function delegateCallSetValue(address targetContract, uint256 _value) public {
 }
 ```
 
-In final contract A looks like:
+Final contracts look like:
+
 ```solidity
 contract A {
     uint256 public primaryValueInContractA;
@@ -82,13 +83,16 @@ contract B {
         primaryValueInContractB = _val;
     }
 }
-
 ```
 
-- If we notice the variable name in contract A differs from variable name in contract B which stores our primaryVariable, but while using delegate call we should focus on variable's storage slot not the name or identifier of the variable
--in contract A we have variable name of primaryValueInContractA which is stored in slot 0 . but in contract B the variable name is primaryValueInContractB both are different but by using setPrimaryValue function in contract B it is triggering to slot 0 value in the contract B. so by using this logic code through delegate call we are going to modify the value in slot 0 irrespective of the data type 
+Key points:
+- Variable names differ between contracts (primaryValueInContractA vs primaryValueInContractB)
+- `delegatecall` works based on storage slots, not variable names
+- Both variables occupy slot 0 in their respective contracts
+- `setPrimaryValue` in Contract B modifies slot 0, which affects Contract A's storage when called via `delegatecall`
 
-## we can access  values in storage slot using inline assembly as 
+We can access storage slot values using inline assembly:
+
 ```solidity
 function getPrimaryValueSlot() public view returns (uint256 value) {
     assembly {
@@ -96,10 +100,9 @@ function getPrimaryValueSlot() public view returns (uint256 value) {
         value := sload(0)
     }
 }
-```  
+```
 
-
-
+---
 
 ## Transparent Proxy Implementation
 
@@ -121,5 +124,4 @@ contract Proxy {
         // delegatecall to implementation
     }
 }
-```
 ```
