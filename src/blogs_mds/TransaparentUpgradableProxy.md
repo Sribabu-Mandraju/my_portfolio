@@ -36,7 +36,7 @@ A proxy contract stores data but delegates functionality to implementation contr
 
 ## Understanding Delegatecall
 
-`delegatecall` enables borrowing functionality from another contract:
+delegatecall enables borrowing functionality from another contract:
 
 ```solidity
 contract A {
