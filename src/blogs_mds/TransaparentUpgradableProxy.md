@@ -1,6 +1,4 @@
-Here's your content formatted for better readability while maintaining all the original information:
 
----
 
 # Transparent Upgradable Proxy Contracts
 
