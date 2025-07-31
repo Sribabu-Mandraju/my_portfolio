@@ -30,7 +30,7 @@ In blockchain, if a smart contract is once deployed we cannot update its functio
 
 ## What are Proxy Contracts?
 
-A proxy contract stores data but delegates functionality to implementation contracts. In simple terms, it borrows code from another smart contract to perform operations on its own data. Understanding proxy contracts requires understanding `delegatecall`.
+A proxy contract stores data but delegates functionality to implementation contracts. In simple terms, it borrows code from another smart contract to perform operations on its own data. Understanding proxy contracts requires understanding delegatecall.
 
 ---
 
@@ -86,9 +86,9 @@ contract B {
 Key points:
 
 - Variable names differ between contracts (primaryValueInContractA vs primaryValueInContractB)
-- `delegatecall` works based on storage slots, not variable names
+- delegatecall works based on storage slots, not variable names
 - Both variables occupy slot 0 in their respective contracts
-- `setPrimaryValue` in Contract B modifies slot 0, which affects Contract A's storage when called via `delegatecall`
+- setPrimaryValue in Contract B modifies slot 0, which affects Contract A's storage when called via delegatecall
 
 We can access storage slot values using inline assembly:
 
@@ -238,7 +238,7 @@ contract TransparentUpgradeableProxy is ERC1967Proxy {
 
 Key Point :
 
-- In `TransparentUpgradeableProxy` the main feature of it is `admin of ProxyAdmin.sol` can only call the `upgradeToAndCall` , he cannot call the functions of the Implementation contract through proxy contract delegate call .
+- In "TransparentUpgradeableProxy" the main feature of it is "admin of ProxyAdmin.sol" can only call the "upgradeToAndCall" , he cannot call the functions of the Implementation contract through proxy contract delegate call .
 - For every call of proxy contract it will check whether the msg.sender is admin or not if it is admin he can only able to call.if msg.sender is admin and msg.sender is not calling upgradeToAndCall function then the transaction will revert 
 - If msg.sender is not admin of the ProxyAdmin then it will goes to the else block and exhicute delegate call to the implementation contract
 
@@ -310,7 +310,7 @@ contract ProxyAdmin is Ownable {
 
 ## Our inherited ProxyContract.sol
 
-In this contract we will inherit the `TransparentUpgradeableProxy` .
+In this contract we will inherit the TransparentUpgradeableProxy .
 
 ```solidity
 // SPDX-License-Identifier: MIT
