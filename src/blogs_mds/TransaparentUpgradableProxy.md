@@ -35,11 +35,6 @@ Proxy contract is the contract in which we store data but to perform functionali
 
 ---
 
-## How Proxies Help
-
-- Maintain existing storage (count value remains 5)
-- Allow logic upgrades (change increment behavior)
-- Keep same contract address
 
 ## Understanding Delegatecall
 
@@ -79,9 +74,32 @@ contract A {
         require(success, "Call failed");
     }
 }
+
+contract B {
+    uint256 public primaryValueInContractB;
+    
+    function setPrimaryValue(uint256 _val) public {
+        primaryValueInContractB = _val;
+    }
+}
+
 ```
 
-- If we notice the variable name in contract A differs from variable name in contract B which stores our primaryVariable, but while using delegate call we should focus on variable's storage slot not the name or identifier of the variable.
+- If we notice the variable name in contract A differs from variable name in contract B which stores our primaryVariable, but while using delegate call we should focus on variable's storage slot not the name or identifier of the variable
+-in contract A we have variable name of primaryValueInContractA which is stored in slot 0 . but in contract B the variable name is primaryValueInContractB both are different but by using setPrimaryValue function in contract B it is triggering to slot 0 value in the contract B. so by using this logic code through delegate call we are going to modify the value in slot 0 irrespective of the data type 
+
+## we can access  values in storage slot using inline assembly as 
+```solidity
+function getPrimaryValueSlot() public view returns (uint256 value) {
+    assembly {
+        // Load the value from storage slot 0 (the first variable in storage)
+        value := sload(0)
+    }
+}
+```  
+
+
+
 
 ## Transparent Proxy Implementation
 
