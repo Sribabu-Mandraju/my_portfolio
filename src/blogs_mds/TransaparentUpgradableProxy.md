@@ -2,6 +2,13 @@
 
 Transparent Upgradable proxy is a one of the most used proxy pattern to implement proxy contracts . In simple in transparent we have two main contracts proxyAdmin.sol and TransparentUpgradeableProxy.sol . TransparentUpgradeableProxy.sol handles delegate calls through delegate call this contract is used to delegatecall the implementaion contract and proxyAdmin.sol is the contract which have the access to upgrade address of the implementation contract
 
+
+## What are Proxy Contracts?
+
+A proxy contract stores data but delegates functionality to implementation contracts. In simple terms, it borrows code from another smart contract to perform operations on its own data. Understanding proxy contracts requires understanding delegatecall.
+
+---
+
 ## The Need for Proxy Contracts
 
 In blockchain, smart contracts are immutable after deployment. Proxy contracts enable upgrading contract logic while preserving data.
@@ -28,11 +35,7 @@ contract VersionTwo {
 
 In blockchain, if a smart contract is once deployed we cannot update its functionality because they are immutable by nature. To upgrade a contract's functionality, we have to redeploy it, but the newly deployed contract won't have the previous data. Proxy contracts solve this by allowing data persistence across upgrades.
 
-## What are Proxy Contracts?
 
-A proxy contract stores data but delegates functionality to implementation contracts. In simple terms, it borrows code from another smart contract to perform operations on its own data. Understanding proxy contracts requires understanding delegatecall.
-
----
 
 ## Understanding Delegatecall
 

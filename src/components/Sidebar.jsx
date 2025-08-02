@@ -1,26 +1,26 @@
-import { NavLink } from "react-router-dom"
-import { Home, Tag,FlagTriangleRight ,Clock, User,  Mail } from "lucide-react"
+import { NavLink } from "react-router-dom";
+import { Home, Tag, FlagTriangleRight, Clock, User, Mail } from "lucide-react";
 import { FaXTwitter } from "react-icons/fa6";
-import { FaGithub,FaLinkedin } from "react-icons/fa6";
+import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { FaCode } from "react-icons/fa";
-import profileImg from '../assets/meee.jpg';
+import profileImg from "../assets/meee.jpg";
 import { FaBook } from "react-icons/fa6";
-
-
 
 const navItems = [
   { name: "HOME", icon: Home, to: "/" },
-  { name: "CTFS", icon: FlagTriangleRight , to: "/ctfs" },
+  { name: "CTFS", icon: FlagTriangleRight, to: "/ctfs" },
   { name: "BLOGS", icon: FaBook, to: "/blogs" },
   { name: "PROJECTS", icon: FaCode, to: "/projects" },
   { name: "TIMELINE", icon: Clock, to: "/timeline" },
   { name: "ABOUT", icon: User, to: "/about" },
-]
+];
 
 export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }) {
   return (
     <nav
-      className={`fixed lg:static inset-y-0 left-0 z-40 w-64 bg-gray-800 border-r border-gray-700 transform ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0 transition-transform duration-300 ease-in-out`}
+      className={`fixed lg:static inset-y-0 left-0 z-40 w-64 bg-gray-800 border-r border-gray-700 transform ${
+        isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+      } lg:translate-x-0 transition-transform duration-300 ease-in-out`}
       aria-label="Sidebar Navigation"
     >
       <div className="flex flex-col h-full">
@@ -34,7 +34,9 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }) {
             />
           </div>
           <h2 className="text-xl font-bold text-gray-100 mb-1">ᴀᴠɢ ꜱᴘɪᴅᴇʏ࿐</h2>
-          <p className="text-gray-400 text-sm italic">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन</p>
+          <p className="text-gray-400 text-sm italic">
+            कर्मण्येवाधिकारस्ते मा फलेषु कदाचन
+          </p>
         </div>
         {/* Navigation Menu */}
         <ul className="flex-1 p-4 space-y-2">
@@ -63,10 +65,26 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }) {
         <div className="p-4 border-t border-gray-700">
           <div className="flex justify-center space-x-4">
             {[
-              { icon: FaGithub, href: "https://github.com/d4r3-w0lf",  label: "GitHub" },
-              { icon: FaXTwitter, href: "https://x.com/d4r3_w0lf", label: "Twitter" },
-              { icon: Mail, href: "nandeeshdevannagari@gmail.com", label: "Email" },
-              { icon: FaLinkedin, href: "https://www.linkedin.com/in/nandeesh-d", label: "LinkedIn" },
+              {
+                icon: FaGithub,
+                href: "https://github.com/d4r3-w0lf",
+                label: "GitHub",
+              },
+              {
+                icon: FaXTwitter,
+                href: "https://x.com/d4r3_w0lf",
+                label: "Twitter",
+              },
+              {
+                icon: Mail,
+                href: "nandeeshdevannagari@gmail.com",
+                label: "Email",
+              },
+              {
+                icon: FaLinkedin,
+                href: "https://www.linkedin.com/in/nandeesh-d",
+                label: "LinkedIn",
+              },
             ].map((social, index) => (
               <a
                 key={index}
@@ -83,5 +101,5 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }) {
         </div>
       </div>
     </nav>
-  )
-} 
+  );
+}
