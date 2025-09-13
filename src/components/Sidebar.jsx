@@ -29,7 +29,7 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }) {
           <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden bg-gray-700">
             <img
               src={profileImg}
-              alt="D4R3_W0LF Avatar"
+              alt="sribabu Avatar"
               className="w-full h-full object-cover"
             />
           </div>
@@ -67,22 +67,22 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }) {
             {[
               {
                 icon: FaGithub,
-                href: "https://github.com/d4r3-w0lf",
+                href: "https://github.com/Sribabu-Mandraju",
                 label: "GitHub",
               },
               {
                 icon: FaXTwitter,
-                href: "https://x.com/d4r3_w0lf",
+                href: "https://x.com/sribabu_",
                 label: "Twitter",
               },
               {
                 icon: Mail,
-                href: "nandeeshdevannagari@gmail.com",
+                href: "sribabumandraju@gmail.com",
                 label: "Email",
               },
               {
                 icon: FaLinkedin,
-                href: "https://www.linkedin.com/in/nandeesh-d",
+                href: "https://www.linkedin.com/in/sribabu-mandraju-590524233",
                 label: "LinkedIn",
               },
             ].map((social, index) => (

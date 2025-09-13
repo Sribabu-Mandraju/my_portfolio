@@ -1,25 +1,70 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import ProjectCard from "../components/ProjectCard"
-import ProjectFilters from "../components/ProjectFilters"
-import ProjectStats from "../components/ProjectStats"
-import { Code, Globe, Users, Star, Search } from "lucide-react"
+import { useState } from "react";
+import ProjectCard from "../components/ProjectCard";
+import ProjectFilters from "../components/ProjectFilters";
+import ProjectStats from "../components/ProjectStats";
+import { Code, Globe, Users, Star, Search } from "lucide-react";
 
 // Import images
-import az from "../assets/images/azlogistics.png"
-import futurax from "../assets/images/futurax.png"
-import karunyasetu from "../assets/images/karunyasetu.png"
-import livebreak from "../assets/images/liveBreak.png"
-import meebuddy from "../assets/images/meebuddy.png"
-import rvsLabs from "../assets/images/rvsLabs.png"
-import tz from "../assets/images/tz.png"
-import tz_admin from "../assets/images/tz_admin.png"
+import az from "../assets/images/azlogistics.png";
+import futurax from "../assets/images/futurax.png";
+import karunyasetu from "../assets/images/karunyasetu.png";
+import livebreak from "../assets/images/liveBreak.png";
+import meebuddy from "../assets/images/meebuddy.png";
+import rvsLabs from "../assets/images/rvsLabs.png";
+import tz from "../assets/images/tz.png";
+import tz_admin from "../assets/images/tz_admin.png";
 
 // Projects data
 const projects = [
   {
     id: 1,
+    title: "Karunyasetu Dapp",
+    description:
+      "A blockchain-based disaster relief system offering instant, transparent aid distribution. Features multilingual AI chatbots and decentralized verification.",
+    category: "web3",
+    tags: ["Solidity", "Smart Contracts", "Web3", "AI Chatbot"],
+    image: karunyasetu,
+    github: "https://github.com/Sribabu-Mandraju/karunyasetu",
+    live: "https://karunyasethu.vercel.app/",
+    impact:
+      "Restored trust in relief distribution during crises using blockchain.",
+    techStack: ["Solidity", "React", "IPFS", "ChatGPT", "Smart Contracts"],
+    featured: true,
+  },
+  {
+    id: 2,
+    title: "Futurax",
+    description:
+      "A decentralized prediction platform where users stake crypto on real-world events. Utilizes smart contracts for fair and tamper-proof outcomes.",
+    category: "web3",
+    tags: ["Solidity", "React", "Blockchain", "Web3"],
+    image: futurax,
+    github: "https://github.com/Sribabu-Mandraju/futurax",
+    live: "https://future-x-ulpg.vercel.app/",
+    impact:
+      "Enabled transparent prediction markets with secure crypto staking.",
+    techStack: ["Solidity", "React", "Ethers.js", "Smart Contracts"],
+    featured: true,
+  },
+  {
+    id: 3,
+    title: "Decentralized TimeLock Deposit",
+    description:
+      "An ERC721-based staking system where users lock USDT to mint NFTs representing time-locked deposits with fixed ROI.",
+    category: "web3",
+    tags: ["Solidity", "React", "Blockchain", "Web3", "base-mainnet"],
+    image: rvsLabs,
+    github: "https://github.com/Sribabu-Mandraju/rvs_labs",
+    live: "https://www.rvrlabs.xyz",
+    impact:
+      "Enabled transparent prediction markets with secure crypto staking.",
+    techStack: ["Solidity", "React", "Node.js", "Ethers.js", "Smart Contracts"],
+    featured: false,
+  },
+  {
+    id: 4,
     title: "Teckzite2k25 Official Website",
     description:
       "A dynamic platform for Teckzite, the annual National Techno-management fest at RGUKT Nuzvid. Built with the MERN stack, featuring Google Authentication, Razorpay payment gateway, and a custom admin panel for managing events and participants.",
@@ -31,12 +76,13 @@ const projects = [
       backend: "https://github.com/Sribabu-Mandraju/teckzite-backend",
     },
     live: "https://teckzite.vercel.app",
-    impact: "Enabled 1,000+ participants to register and manage event activities.",
+    impact:
+      "Enabled 1,000+ participants to register and manage event activities.",
     techStack: ["MERN Stack", "Razorpay", "Google Auth", "TailwindCSS", "AWS"],
     featured: true,
   },
   {
-    id: 2,
+    id: 5,
     title: "Mee Buddy",
     description:
       "A commercial ad-slot booking portal for Mee24News, allowing users and reporters to buy regional ad spaces across AP and Telangana with real-time pricing and secure payments.",
@@ -53,7 +99,7 @@ const projects = [
     featured: true,
   },
   {
-    id: 3,
+    id: 6,
     title: "AZLogic Solutions",
     description:
       "Landing page for a digital solutions company, built with engaging UI/UX and Framer Motion for smooth animations.",
@@ -62,12 +108,31 @@ const projects = [
     image: az,
     github: "https://github.com/Sribabu-Mandraju/azlogic-solutions",
     live: "https://mee-code-x.vercel.app/",
-    impact: "Improved conversion with a visually appealing and modern interface.",
+    impact:
+      "Improved conversion with a visually appealing and modern interface.",
     techStack: ["React", "TailwindCSS", "Framer Motion"],
     featured: false,
   },
   {
-    id: 4,
+    id: 7,
+    title: "Teckzite2k25 Admin Panel",
+    description:
+      "An admin panel to maintain and send real time updates by the coordinators of teckzite monitoring registrations for the event and analysing statistics and trafic from users",
+    category: "web",
+    tags: ["React", "Node.js", "Express.js", "MongoDB", "TailwindCSS"],
+    image: tz_admin,
+    github: {
+      frontend: "https://github.com/Sribabu-Mandraju/teckzite-frontend",
+      backend: "https://github.com/Sribabu-Mandraju/teckzite-backend",
+    },
+    live: "https://teckzite.vercel.app",
+    impact:
+      "Enabled 1,000+ participants to register and manage event activities.",
+    techStack: ["MERN Stack", "Razorpay", "Google Auth", "TailwindCSS", "AWS"],
+    featured: false,
+  },
+  {
+    id: 8,
     title: "Livebreak App and Website",
     description:
       "A local news app for real time updates and have realtime feedbacks and instaneous news from reporters",
@@ -80,7 +145,7 @@ const projects = [
     featured: false,
   },
   {
-    id: 5,
+    id: 9,
     title: "MeeBuddy App and Website",
     description:
       "An eCommerce platform tailored for rural India, featuring cross-platform app functionality with Ionic and Angular. Worked on major UI improvements and backend features.",
@@ -92,73 +157,26 @@ const projects = [
     techStack: ["Angular", "Ionic", "MongoDB", "TailwindCSS"],
     featured: false,
   },
-  {
-    id: 6,
-    title: "Teckzite2k25 Admin Panel",
-    description:
-      "An admin panel to maintain and send real time updates by the coordinators of teckzite monitoring registrations for the event and analysing statistics and trafic from users",
-    category: "web",
-    tags: ["React", "Node.js", "Express.js", "MongoDB", "TailwindCSS"],
-    image: tz_admin,
-    github: {
-      frontend: "https://github.com/Sribabu-Mandraju/teckzite-frontend",
-      backend: "https://github.com/Sribabu-Mandraju/teckzite-backend",
-    },
-    live: "https://teckzite.vercel.app",
-    impact: "Enabled 1,000+ participants to register and manage event activities.",
-    techStack: ["MERN Stack", "Razorpay", "Google Auth", "TailwindCSS", "AWS"],
-    featured: false,
-  },
-  {
-    id: 7,
-    title: "Futurax",
-    description:
-      "A decentralized prediction platform where users stake crypto on real-world events. Utilizes smart contracts for fair and tamper-proof outcomes.",
-    category: "web3",
-    tags: ["Solidity", "React", "Blockchain", "Web3"],
-    image: futurax,
-    github: "https://github.com/Sribabu-Mandraju/futurax",
-    live: "https://future-x-ulpg.vercel.app/",
-    impact: "Enabled transparent prediction markets with secure crypto staking.",
-    techStack: ["Solidity", "React", "Ethers.js", "Smart Contracts"],
-    featured: true,
-  },
-  {
-    id: 8,
-    title: "Karunyasetu Dapp",
-    description:
-      "A blockchain-based disaster relief system offering instant, transparent aid distribution. Features multilingual AI chatbots and decentralized verification.",
-    category: "web3",
-    tags: ["Solidity", "Smart Contracts", "Web3", "AI Chatbot"],
-    image: karunyasetu,
-    github: "https://github.com/Sribabu-Mandraju/karunyasetu",
-    live: "https://karunyasethu.vercel.app/",
-    impact: "Restored trust in relief distribution during crises using blockchain.",
-    techStack: ["Solidity", "React", "IPFS", "ChatGPT", "Smart Contracts"],
-    featured: true,
-  },
-  {
-    id: 9,
-    title: "Decentralized TimeLock Deposit",
-    description:
-      "An ERC721-based staking system where users lock USDT to mint NFTs representing time-locked deposits with fixed ROI.",
-    category: "web3",
-    tags: ["Solidity", "React", "Blockchain", "Web3", "base-mainnet"],
-    image: rvsLabs,
-    github: "https://github.com/Sribabu-Mandraju/rvs_labs",
-    live: "https://www.rvrlabs.xyz",
-    impact: "Enabled transparent prediction markets with secure crypto staking.",
-    techStack: ["Solidity", "React", "Node.js", "Ethers.js", "Smart Contracts"],
-    featured: false,
-  },
-]
+];
 
 const categories = [
   { id: "all", label: "All Projects", count: projects.length },
-  { id: "web3", label: "Web3 & Blockchain", count: projects.filter((p) => p.category === "web3").length },
-  { id: "web", label: "Web Development", count: projects.filter((p) => p.category === "web").length },
-  { id: "mobile", label: "Mobile Apps", count: projects.filter((p) => p.category === "mobile").length },
-]
+  {
+    id: "web3",
+    label: "Web3 & Blockchain",
+    count: projects.filter((p) => p.category === "web3").length,
+  },
+  {
+    id: "web",
+    label: "Web Development",
+    count: projects.filter((p) => p.category === "web").length,
+  },
+  {
+    id: "mobile",
+    label: "Mobile Apps",
+    count: projects.filter((p) => p.category === "mobile").length,
+  },
+];
 
 const projectStats = [
   {
@@ -189,28 +207,34 @@ const projectStats = [
     color: "text-purple-400",
     bgColor: "bg-purple-400/10",
   },
-]
+];
 
 function Projects() {
-  const [selectedCategory, setSelectedCategory] = useState("all")
-  const [searchQuery, setSearchQuery] = useState("")
-  const [showFeaturedOnly, setShowFeaturedOnly] = useState(false)
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showFeaturedOnly, setShowFeaturedOnly] = useState(false);
 
   const filteredProjects = projects.filter((project) => {
-    const matchesCategory = selectedCategory === "all" || project.category === selectedCategory
+    const matchesCategory =
+      selectedCategory === "all" || project.category === selectedCategory;
     const matchesSearch =
       project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      project.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase()))
-    const matchesFeatured = !showFeaturedOnly || project.featured
+      project.tags.some((tag) =>
+        tag.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    const matchesFeatured = !showFeaturedOnly || project.featured;
 
-    return matchesCategory && matchesSearch && matchesFeatured
-  })
+    return matchesCategory && matchesSearch && matchesFeatured;
+  });
 
   return (
     <div className="flex flex-1 overflow-hidden flex-col lg:flex-row">
       {/* Main Content */}
-      <main className="flex-1 p-4 lg:p-6 overflow-y-auto" aria-label="Projects content">
+      <main
+        className="flex-1 p-4 lg:p-6 overflow-y-auto"
+        aria-label="Projects content"
+      >
         {/* Hero Section */}
         <div className="mb-8">
           <div className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 border border-gray-600 rounded-xl p-6 lg:p-8 text-white relative overflow-hidden">
@@ -220,11 +244,14 @@ function Projects() {
                 My Projects Portfolio
               </h1>
               <p className="text-lg lg:text-xl text-gray-300 mb-4">
-                Showcasing innovative Web3 solutions, full-stack applications, and mobile experiences
+                Showcasing innovative Web3 solutions, full-stack applications,
+                and mobile experiences
               </p>
               <p className="text-base text-gray-400">
-                From decentralized applications and smart contracts to enterprise web platforms and mobile apps, each
-                project demonstrates expertise in cutting-edge technologies and real-world problem solving.
+                From decentralized applications and smart contracts to
+                enterprise web platforms and mobile apps, each project
+                demonstrates expertise in cutting-edge technologies and
+                real-world problem solving.
               </p>
             </div>
           </div>
@@ -234,19 +261,23 @@ function Projects() {
         <div className="mb-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {projectStats.map((stat, index) => {
-              const IconComponent = stat.icon
+              const IconComponent = stat.icon;
               return (
                 <div
                   key={index}
                   className="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center hover:border-gray-600 transition-colors duration-200"
                 >
-                  <div className={`inline-flex p-2 rounded-lg ${stat.bgColor} mb-2`}>
+                  <div
+                    className={`inline-flex p-2 rounded-lg ${stat.bgColor} mb-2`}
+                  >
                     <IconComponent className={`w-5 h-5 ${stat.color}`} />
                   </div>
-                  <div className="text-xl font-bold text-white mb-1">{stat.value}</div>
+                  <div className="text-xl font-bold text-white mb-1">
+                    {stat.value}
+                  </div>
                   <div className="text-sm text-gray-400">{stat.label}</div>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
@@ -268,7 +299,9 @@ function Projects() {
                 <span>{category.label}</span>
                 <span
                   className={`text-xs px-2 py-0.5 rounded-full ${
-                    selectedCategory === category.id ? "bg-blue-500/30 text-blue-100" : "bg-gray-600 text-gray-300"
+                    selectedCategory === category.id
+                      ? "bg-blue-500/30 text-blue-100"
+                      : "bg-gray-600 text-gray-300"
                   }`}
                 >
                   {category.count}
@@ -312,10 +345,12 @@ function Projects() {
             <div className="text-center text-gray-400 py-12">
               <Code className="w-12 h-12 mx-auto mb-4 opacity-50" />
               <p className="text-lg mb-2">No projects found.</p>
-              <p className="text-sm">Try adjusting your search criteria or filters.</p>
+              <p className="text-sm">
+                Try adjusting your search criteria or filters.
+              </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {filteredProjects.map((project) => (
                 <ProjectCard key={project.id} project={project} />
               ))}
@@ -325,17 +360,19 @@ function Projects() {
       </main>
 
       {/* Right Sidebar (hidden on mobile) */}
-      <aside className="hidden lg:block lg:w-80 p-4 lg:p-6 space-y-6 overflow-y-auto" aria-label="Project filters">
+      {/* <aside
+        className="hidden lg:block lg:w-80 p-4 lg:p-6 space-y-6 overflow-y-auto"
+        aria-label="Project filters"
+      >
         <ProjectFilters
           categories={categories}
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
         />
         <ProjectStats stats={projectStats} />
-      </aside>
+      </aside> */}
     </div>
-  )
+  );
 }
 
-
-export default Projects
+export default Projects;
