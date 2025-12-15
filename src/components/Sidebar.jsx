@@ -8,8 +8,8 @@ import { FaBook } from "react-icons/fa6";
 
 const navItems = [
   { name: "HOME", icon: Home, to: "/" },
-  { name: "CTFS", icon: FlagTriangleRight, to: "/ctfs" },
-  { name: "BLOGS", icon: FaBook, to: "/blogs" },
+  // { name: "CTFS", icon: FlagTriangleRight, to: "/ctfs" },
+  // { name: "BLOGS", icon: FaBook, to: "/blogs" },
   { name: "PROJECTS", icon: FaCode, to: "/projects" },
   { name: "TIMELINE", icon: Clock, to: "/timeline" },
   { name: "ABOUT", icon: User, to: "/about" },
