@@ -4,7 +4,7 @@ import { BarChart3 } from "lucide-react"
 
 export default function ProjectStats({ stats }) {
   return (
-    <div className="bg-gray-800 border border-gray-700 rounded-xl p-6">
+    <div className="bg-zinc-950 border border-zinc-900 rounded-xl p-6">
       <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
         <BarChart3 className="w-5 h-5 mr-2 text-blue-400" />
         Portfolio Overview

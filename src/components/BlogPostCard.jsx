@@ -3,7 +3,7 @@ import { Calendar } from "lucide-react"
 export default function BlogPostCard({ post }) {
   return (
     <article
-      className="bg-gray-800 border border-gray-700 rounded-lg p-6 hover:border-gray-600 transition-colors duration-200 shadow-sm focus-within:ring-2 focus-within:ring-blue-500"
+      className="bg-zinc-950 border border-zinc-900 rounded-lg p-6 hover:border-zinc-800 transition-colors duration-200 shadow-sm focus-within:ring-2 focus-within:ring-blue-500"
       tabIndex={0}
       aria-labelledby={`post-title-${post.id}`}
     >
@@ -23,7 +23,7 @@ export default function BlogPostCard({ post }) {
           {post.tags.map((tag, index) => (
             <span
               key={index}
-              className="bg-gray-700 px-2 py-1 rounded text-xs hover:bg-gray-600 cursor-pointer transition-colors duration-200"
+              className="bg-zinc-900 px-2 py-1 rounded text-xs hover:bg-zinc-800 cursor-pointer transition-colors duration-200"
             >
               {tag}
             </span>

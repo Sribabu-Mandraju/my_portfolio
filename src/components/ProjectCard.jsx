@@ -19,9 +19,9 @@ export default function ProjectCard({ project }) {
     typeof project.github === "object" && project.github.frontend;
 
   return (
-    <div className="group bg-gray-800 border border-gray-700 rounded-lg overflow-hidden hover:border-gray-600 transition-all duration-300 hover:shadow-lg hover:shadow-gray-900/20 hover:-translate-y-1">
+    <div className="group bg-zinc-950 border border-zinc-900 rounded-lg overflow-hidden hover:border-zinc-800 transition-all duration-300 hover:shadow-lg hover:shadow-black/20 hover:-translate-y-1">
       {/* Project Image */}
-      <div className="relative h-32 sm:h-36 bg-gray-700 overflow-hidden">
+      <div className="relative h-32 sm:h-36 bg-zinc-900 overflow-hidden">
         <img
           src={project.image || "/placeholder.svg"}
           alt={project.title}
@@ -35,7 +35,7 @@ export default function ProjectCard({ project }) {
         />
 
         {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
         {/* Category Badge */}
         <div className="absolute top-3 left-3">
@@ -71,7 +71,7 @@ export default function ProjectCard({ project }) {
                 href={project.github.frontend}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-gray-900/90 hover:bg-gray-800 text-white rounded-md transition-colors duration-200 backdrop-blur-sm"
+                className="p-2 bg-black/90 hover:bg-zinc-950 text-white rounded-md transition-colors duration-200 backdrop-blur-sm"
                 title="Frontend Code"
               >
                 <Github className="w-3.5 h-3.5" />
@@ -80,7 +80,7 @@ export default function ProjectCard({ project }) {
                 href={project.github.backend}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-gray-900/90 hover:bg-gray-800 text-white rounded-md transition-colors duration-200 backdrop-blur-sm"
+                className="p-2 bg-black/90 hover:bg-zinc-950 text-white rounded-md transition-colors duration-200 backdrop-blur-sm"
                 title="Backend Code"
               >
                 <Github className="w-3.5 h-3.5" />
@@ -96,7 +96,7 @@ export default function ProjectCard({ project }) {
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-gray-900/90 hover:bg-gray-800 text-white rounded-md transition-colors duration-200 backdrop-blur-sm"
+                className="p-2 bg-black/90 hover:bg-zinc-950 text-white rounded-md transition-colors duration-200 backdrop-blur-sm"
                 title="View Code"
               >
                 <Github className="w-3.5 h-3.5" />
@@ -135,13 +135,13 @@ export default function ProjectCard({ project }) {
             {project.techStack.slice(0, 4).map((tech) => (
               <span
                 key={tech}
-                className="bg-gray-700/80 hover:bg-gray-600 text-gray-200 text-xs px-2 py-0.5 rounded font-medium transition-colors duration-200 border border-gray-600/50"
+                className="bg-zinc-900/80 hover:bg-zinc-800 text-gray-200 text-xs px-2 py-0.5 rounded font-medium transition-colors duration-200 border border-zinc-800/50"
               >
                 {tech}
               </span>
             ))}
             {project.techStack.length > 4 && (
-              <span className="bg-gray-700/50 text-gray-400 text-xs px-2 py-0.5 rounded border border-gray-600/30">
+              <span className="bg-zinc-900/50 text-gray-400 text-xs px-2 py-0.5 rounded border border-zinc-800/30">
                 +{project.techStack.length - 4}
               </span>
             )}
@@ -156,7 +156,7 @@ export default function ProjectCard({ project }) {
                 href={project.github.frontend}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-1 px-2 py-1.5 bg-gray-700 hover:bg-gray-600 text-white text-xs font-medium rounded transition-all duration-200 flex-1 border border-gray-600/50 hover:border-gray-500"
+                className="flex items-center justify-center gap-1 px-2 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-medium rounded transition-all duration-200 flex-1 border border-zinc-800/50 hover:border-gray-500"
               >
                 <Github className="w-3 h-3" />
                 <span className="hidden sm:inline">Frontend</span>
@@ -166,7 +166,7 @@ export default function ProjectCard({ project }) {
                 href={project.github.backend}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-1 px-2 py-1.5 bg-gray-700 hover:bg-gray-600 text-white text-xs font-medium rounded transition-all duration-200 flex-1 border border-gray-600/50 hover:border-gray-500"
+                className="flex items-center justify-center gap-1 px-2 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-medium rounded transition-all duration-200 flex-1 border border-zinc-800/50 hover:border-gray-500"
               >
                 <Github className="w-3 h-3" />
                 <span className="hidden sm:inline">Backend</span>
@@ -183,7 +183,7 @@ export default function ProjectCard({ project }) {
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 px-2 py-1.5 bg-gray-700 hover:bg-gray-600 text-white text-xs font-medium rounded transition-all duration-200 flex-1 justify-center border border-gray-600/50 hover:border-gray-500"
+                className="flex items-center gap-1 px-2 py-1.5 bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-medium rounded transition-all duration-200 flex-1 justify-center border border-zinc-800/50 hover:border-gray-500"
               >
                 <Github className="w-3 h-3" />
                 Code

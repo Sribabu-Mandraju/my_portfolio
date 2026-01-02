@@ -1,7 +1,15 @@
 export default function RecentlyUpdated({ items }) {
   return (
-    <section className="bg-gray-800 border border-gray-700 rounded-lg p-4" aria-labelledby="recently-updated-title">
-      <h3 className="text-lg font-semibold text-gray-100 mb-4" id="recently-updated-title">Recently Updated</h3>
+    <section
+      className="bg-zinc-950 border border-zinc-900 rounded-lg p-4"
+      aria-labelledby="recently-updated-title"
+    >
+      <h3
+        className="text-lg font-semibold text-gray-100 mb-4"
+        id="recently-updated-title"
+      >
+        Recently Updated
+      </h3>
       <ul className="space-y-2">
         {items.map((item, index) => (
           <li key={index}>
@@ -15,5 +23,5 @@ export default function RecentlyUpdated({ items }) {
         ))}
       </ul>
     </section>
-  )
-} 
+  );
+}

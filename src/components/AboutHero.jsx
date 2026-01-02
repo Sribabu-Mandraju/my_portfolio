@@ -45,7 +45,7 @@ export default function AboutHero({ personalInfo }) {
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-3 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors duration-200"
+                  className="flex items-center gap-2 px-3 py-2 bg-zinc-950 hover:bg-zinc-900 rounded-lg transition-colors duration-200"
                 >
                   <Github className="w-4 h-4 text-white" />
                   <span className="text-sm">GitHub</span>
@@ -82,7 +82,7 @@ export default function AboutHero({ personalInfo }) {
           </div>
 
           {/* Mission Statement */}
-          <div className="mt-6 p-4 bg-gray-800 border border-gray-600 rounded-lg">
+          <div className="mt-6 p-4 bg-zinc-950 border border-zinc-800 rounded-lg">
             <p className="text-gray-300 leading-relaxed">
               <span className="text-blue-400 font-semibold">Mission:</span> {personalInfo.mission}
             </p>

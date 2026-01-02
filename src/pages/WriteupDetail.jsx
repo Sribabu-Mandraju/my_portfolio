@@ -61,7 +61,7 @@ export default function WriteupDetail() {
           </Link>
 
           {/* Header */}
-          <div className="bg-gray-800 rounded-xl border border-gray-700 p-6 mb-6">
+          <div className="bg-zinc-950 rounded-xl border border-zinc-900 p-6 mb-6">
             <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between">
               <div className="flex-1">
                 <h1 className="text-3xl font-bold text-gray-100 mb-4">{writeup.title}</h1>
@@ -76,7 +76,7 @@ export default function WriteupDetail() {
                     <span>{writeup.file}</span>
                   </span> */}
                   {writeup.categoryName && (
-                    <span className="px-3 py-1 bg-gray-700 rounded-full text-xs">{writeup.categoryName}</span>
+                    <span className="px-3 py-1 bg-zinc-900 rounded-full text-xs">{writeup.categoryName}</span>
                   )}
                 </div>
 
@@ -85,7 +85,7 @@ export default function WriteupDetail() {
                     {writeup.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="inline-flex items-center px-3 py-1 bg-gray-700 text-gray-200 text-sm rounded-full"
+                        className="inline-flex items-center px-3 py-1 bg-zinc-900 text-gray-200 text-sm rounded-full"
                       >
                         <Tag className="w-3 h-3 mr-1" />
                         {tag}

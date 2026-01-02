@@ -265,7 +265,7 @@ function Projects() {
               return (
                 <div
                   key={index}
-                  className="bg-gray-800 border border-gray-700 rounded-lg p-4 text-center hover:border-gray-600 transition-colors duration-200"
+                  className="bg-zinc-950 border border-zinc-900 rounded-lg p-4 text-center hover:border-zinc-800 transition-colors duration-200"
                 >
                   <div
                     className={`inline-flex p-2 rounded-lg ${stat.bgColor} mb-2`}
@@ -293,7 +293,7 @@ function Projects() {
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   selectedCategory === category.id
                     ? "bg-blue-600 text-white shadow-lg"
-                    : "bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 border border-gray-700"
+                    : "bg-zinc-950 text-gray-400 hover:text-white hover:bg-zinc-900 border border-zinc-900"
                 }`}
               >
                 <span>{category.label}</span>
@@ -319,7 +319,7 @@ function Projects() {
                 placeholder="Search projects by name, description, or technology..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors duration-200"
+                className="w-full pl-10 pr-4 py-2 bg-zinc-950 border border-zinc-900 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors duration-200"
               />
             </div>
             <div className="flex items-center gap-4">
@@ -328,7 +328,7 @@ function Projects() {
                   type="checkbox"
                   checked={showFeaturedOnly}
                   onChange={(e) => setShowFeaturedOnly(e.target.checked)}
-                  className="w-4 h-4 text-blue-600 bg-gray-800 border-gray-600 rounded focus:ring-blue-500 focus:ring-2"
+                  className="w-4 h-4 text-blue-600 bg-zinc-950 border-zinc-800 rounded focus:ring-blue-500 focus:ring-2"
                 />
                 <span className="text-sm">Featured only</span>
               </label>

@@ -58,7 +58,7 @@ const trendingTags = [
   "reverse-engineering",
   "steganography",
   "welcome",
-]x
+]
 
 function getAllTags(posts) {
   const tagMap = {}
@@ -90,7 +90,7 @@ export default function Tags() {
           {tags.map(({ tag, count }) => (
             <button
               key={tag}
-              className="flex items-center gap-2 px-4 py-2 rounded-full border border-blue-700 bg-gray-800 text-blue-300 font-medium shadow-sm hover:bg-blue-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-150 text-base"
+              className="flex items-center gap-2 px-4 py-2 rounded-full border border-blue-700 bg-zinc-950 text-blue-300 font-medium shadow-sm hover:bg-blue-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-150 text-base"
               style={{ boxShadow: "0 2px 8px 0 rgba(30,64,175,0.08)" }}
             >
               <span className="capitalize">{tag}</span>

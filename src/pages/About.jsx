@@ -203,7 +203,7 @@ function About() {
 
         {/* Navigation Tabs */}
         <div className="mb-8">
-          <div className="flex flex-wrap gap-2 p-1 bg-gray-800 border border-gray-700 rounded-xl">
+          <div className="flex flex-wrap gap-2 p-1 bg-zinc-950 border border-zinc-900 rounded-xl">
             {tabs.map((tab) => {
               const IconComponent = tab.icon
               return (
@@ -213,7 +213,7 @@ function About() {
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                     activeTab === tab.id
                       ? "bg-blue-600 text-white shadow-lg"
-                      : "text-gray-400 hover:text-white hover:bg-gray-700"
+                      : "text-gray-400 hover:text-white hover:bg-zinc-900"
                   }`}
                 >
                   <IconComponent className="w-4 h-4" />
@@ -229,7 +229,7 @@ function About() {
           {activeTab === "overview" && (
             <div className="space-y-8">
               {/* About Me Section */}
-              <div className="bg-gray-800 border border-gray-700 rounded-xl p-6 lg:p-8">
+              <div className="bg-zinc-950 border border-zinc-900 rounded-xl p-6 lg:p-8">
                 <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
                   <User className="w-6 h-6 mr-2 text-blue-400" />
                   About Me
@@ -260,11 +260,11 @@ function About() {
               </div>
 
               {/* Featured Projects */}
-              <div className="bg-gray-800 border border-gray-700 rounded-xl p-6 lg:p-8">
+              <div className="bg-zinc-950 border border-zinc-900 rounded-xl p-6 lg:p-8">
                 <h2 className="text-2xl font-bold text-white mb-6">🚀 Featured Projects</h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {featuredProjects.map((project) => (
-                    <div key={project.id} className="bg-gray-700/50 border border-gray-600 rounded-lg p-4 hover:border-gray-500 transition-colors duration-200">
+                    <div key={project.id} className="bg-zinc-900/50 border border-zinc-800 rounded-lg p-4 hover:border-zinc-700 transition-colors duration-200">
                       <div className="flex items-start gap-3 mb-3">
                         <span className="text-2xl">{project.icon}</span>
                         <div className="flex-1">
@@ -274,12 +274,12 @@ function About() {
                       </div>
                       <div className="flex flex-wrap gap-1 mb-3">
                         {project.technologies.slice(0, 3).map((tech) => (
-                          <span key={tech} className="bg-gray-600 text-gray-300 text-xs px-2 py-1 rounded">
+                          <span key={tech} className="bg-zinc-800 text-gray-300 text-xs px-2 py-1 rounded">
                             {tech}
                           </span>
                         ))}
                         {project.technologies.length > 3 && (
-                          <span className="bg-gray-600 text-gray-400 text-xs px-2 py-1 rounded">
+                          <span className="bg-zinc-800 text-gray-400 text-xs px-2 py-1 rounded">
                             +{project.technologies.length - 3}
                           </span>
                         )}
@@ -289,7 +289,7 @@ function About() {
                           href={project.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-1 px-3 py-1 bg-gray-600 hover:bg-gray-500 text-white text-xs rounded transition-colors duration-200"
+                          className="flex items-center gap-1 px-3 py-1 bg-zinc-800 hover:bg-zinc-700 text-white text-xs rounded transition-colors duration-200"
                         >
                           <Github className="w-3 h-3" />
                           Code
@@ -324,7 +324,7 @@ function About() {
       {/* Right Sidebar (hidden on mobile) */}
       <aside className="hidden lg:block lg:w-80 p-4 lg:p-6 space-y-6 overflow-y-auto" aria-label="About sidebar">
         {/* Quick Contact */}
-        <div className="bg-gray-800 border border-gray-700 rounded-xl p-6">
+        <div className="bg-zinc-950 border border-zinc-900 rounded-xl p-6">
           <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
             <Mail className="w-5 h-5 mr-2 text-blue-400" />
             Quick Contact
@@ -332,14 +332,14 @@ function About() {
           <div className="space-y-3">
             <a
               href={`mailto:${personalInfo.email}`}
-              className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-700 transition-colors duration-200 group"
+              className="flex items-center gap-3 p-2 rounded-lg hover:bg-zinc-900 transition-colors duration-200 group"
             >
               <Mail className="w-4 h-4 text-gray-400 group-hover:text-blue-400" />
               <span className="text-sm text-gray-300 group-hover:text-white">Email</span>
             </a>
             <a
               href={`tel:${personalInfo.phone}`}
-              className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-700 transition-colors duration-200 group"
+              className="flex items-center gap-3 p-2 rounded-lg hover:bg-zinc-900 transition-colors duration-200 group"
             >
               <Phone className="w-4 h-4 text-gray-400 group-hover:text-green-400" />
               <span className="text-sm text-gray-300 group-hover:text-white">Call</span>
@@ -348,7 +348,7 @@ function About() {
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-700 transition-colors duration-200 group"
+              className="flex items-center gap-3 p-2 rounded-lg hover:bg-zinc-900 transition-colors duration-200 group"
             >
               <Linkedin className="w-4 h-4 text-gray-400 group-hover:text-blue-500" />
               <span className="text-sm text-gray-300 group-hover:text-white">LinkedIn</span>
@@ -357,7 +357,7 @@ function About() {
         </div>
 
         {/* Current Status */}
-        <div className="bg-gray-800 border border-gray-700 rounded-xl p-6">
+        <div className="bg-zinc-950 border border-zinc-900 rounded-xl p-6">
           <h3 className="text-lg font-semibold text-white mb-4">🚀 Current Status</h3>
           <div className="space-y-3 text-sm">
             <div className="flex items-center gap-2">

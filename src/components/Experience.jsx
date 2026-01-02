@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { Briefcase, MapPin, Calendar, CheckCircle } from 'lucide-react'
+import { Briefcase, MapPin, Calendar, CheckCircle } from "lucide-react";
 
 export default function Experience({ workExperience }) {
   return (
-    <div className="md:bg-gray-800 ld:border border-gray-700 rounded-xl  lg:p-8">
+    <div className="md:bg-zinc-950 ld:border border-zinc-900 rounded-xl  lg:p-8">
       <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
         <Briefcase className="w-6 h-6 mr-2 text-blue-400" />
         Work Experience
@@ -21,20 +21,24 @@ export default function Experience({ workExperience }) {
             {/* Timeline dot */}
             <div
               className={`absolute left-4 top-4 w-4 h-4 rounded-full border-2 z-10 ${
-                job.type === 'current'
-                  ? 'bg-green-400 border-green-400'
-                  : 'bg-gray-600 border-gray-600'
+                job.type === "current"
+                  ? "bg-green-400 border-green-400"
+                  : "bg-gray-600 border-gray-600"
               }`}
             ></div>
 
             {/* Job Card */}
             <div className="ml-6 sm:ml-10 pb-8">
-              <div className="bg-gray-700/50 border border-gray-600 rounded-lg p-4 sm:p-6 hover:border-gray-500 transition-colors duration-200">
+              <div className="bg-zinc-900/50 border border-zinc-800 rounded-lg p-4 sm:p-6 hover:border-zinc-700 transition-colors duration-200">
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
                   <div>
-                    <h3 className="text-lg sm:text-xl font-bold text-white mb-1">{job.position}</h3>
+                    <h3 className="text-lg sm:text-xl font-bold text-white mb-1">
+                      {job.position}
+                    </h3>
                     <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-gray-400">
-                      <span className="font-semibold text-blue-400">{job.company}</span>
+                      <span className="font-semibold text-blue-400">
+                        {job.company}
+                      </span>
                       <div className="flex items-center gap-1">
                         <MapPin className="w-4 h-4" />
                         <span>{job.location}</span>
@@ -50,12 +54,16 @@ export default function Experience({ workExperience }) {
                 </div>
 
                 {/* Description */}
-                <p className="text-gray-300 mb-4 leading-relaxed">{job.description}</p>
+                <p className="text-gray-300 mb-4 leading-relaxed">
+                  {job.description}
+                </p>
 
                 {/* Achievements */}
                 {job.achievements.length > 0 && (
                   <div className="mb-4">
-                    <h4 className="text-sm font-semibold text-white mb-2">Key Achievements:</h4>
+                    <h4 className="text-sm font-semibold text-white mb-2">
+                      Key Achievements:
+                    </h4>
                     <ul className="space-y-1">
                       {job.achievements.map((achievement, idx) => (
                         <li
@@ -72,7 +80,9 @@ export default function Experience({ workExperience }) {
 
                 {/* Technologies */}
                 <div>
-                  <h4 className="text-sm font-semibold text-white mb-2">Technologies:</h4>
+                  <h4 className="text-sm font-semibold text-white mb-2">
+                    Technologies:
+                  </h4>
                   <div className="flex flex-wrap gap-2">
                     {job.technologies.map((tech) => (
                       <span
@@ -90,5 +100,5 @@ export default function Experience({ workExperience }) {
         ))}
       </div>
     </div>
-  )
+  );
 }

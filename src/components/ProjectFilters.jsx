@@ -4,7 +4,7 @@ import { Filter, Layers, Star } from "lucide-react"
 
 export default function ProjectFilters({ categories, selectedCategory, setSelectedCategory }) {
   return (
-    <div className="bg-gray-800 border border-gray-700 rounded-xl p-6">
+    <div className="bg-zinc-950 border border-zinc-900 rounded-xl p-6">
       <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
         <Filter className="w-5 h-5 mr-2 text-blue-400" />
         Project Categories
@@ -18,7 +18,7 @@ export default function ProjectFilters({ categories, selectedCategory, setSelect
             className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-colors duration-200 ${
               selectedCategory === category.id
                 ? "bg-blue-600 text-white"
-                : "text-gray-400 hover:text-white hover:bg-gray-700"
+                : "text-gray-400 hover:text-white hover:bg-zinc-900"
             }`}
           >
             <span className="flex items-center gap-2">

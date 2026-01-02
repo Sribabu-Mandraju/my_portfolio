@@ -123,7 +123,7 @@ function getCategoryClasses(category) {
     education: "bg-cyan-400/10 text-cyan-400 border-cyan-400/20",
     lamp: "bg-red-400/10 text-red-400 border-red-400/20",
     welcome: "bg-yellow-400/10 text-yellow-400 border-yellow-400/20",
-    default: "bg-gray-600/10 text-gray-400 border-gray-600/20",
+    default: "bg-zinc-800/10 text-gray-400 border-zinc-800/20",
   }
   return classes[category] || classes.default
 }
@@ -199,7 +199,7 @@ export default function Timeline() {
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
               selectedYear === "all"
                 ? "bg-blue-600 text-white shadow-lg"
-                : "bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 border border-gray-700"
+                : "bg-zinc-950 text-gray-400 hover:text-white hover:bg-zinc-900 border border-zinc-900"
             }`}
           >
             All Years ({allParsedPosts.length})
@@ -211,7 +211,7 @@ export default function Timeline() {
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 selectedYear === year
                   ? "bg-blue-600 text-white shadow-lg"
-                  : "bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 border border-gray-700"
+                  : "bg-zinc-950 text-gray-400 hover:text-white hover:bg-zinc-900 border border-zinc-900"
               }`}
             >
               {year} ({postsByYear[year].length})
@@ -233,7 +233,7 @@ export default function Timeline() {
               >
                 {/* Date Tag - Desktop */}
                 <div className="hidden sm:flex sm:w-1/2 sm:justify-end sm:pr-6">
-                  <div className="flex items-center gap-2 bg-gray-700/30 rounded-lg px-3 py-1">
+                  <div className="flex items-center gap-2 bg-zinc-900/30 rounded-lg px-3 py-1">
                     <Calendar className="w-4 h-4 text-gray-400" />
                     <span className="text-sm text-nowrap text-gray-300 font-mono">
                       {post.dayName}, {post.month} {post.day}, {post.year}
@@ -242,7 +242,7 @@ export default function Timeline() {
                 </div>
 
                 {/* Dot */}
-                <div className="absolute left-4 sm:left-1/2 sm:-translate-x-1/2 top-6 w-4 h-4 rounded-full border-2 border-gray-700 bg-gray-900 flex items-center justify-center">
+                <div className="absolute left-4 sm:left-1/2 sm:-translate-x-1/2 top-6 w-4 h-4 rounded-full border-2 border-zinc-900 bg-black flex items-center justify-center">
                   <div
                     className={`w-2 h-2 rounded-full ${getCategoryClasses(post.category).split(" ")[0]} animate-pulse`}
                   ></div>
@@ -254,7 +254,7 @@ export default function Timeline() {
                     <div className="px-4 py-3 ">
                       {/* Date and Category - Mobile */}
                       <div className="flex items-center gap-3 mb-4 sm:hidden">
-                        <div className="flex items-center gap-2 bg-gray-700/50 rounded-lg px-3 py-1">
+                        <div className="flex items-center gap-2 bg-zinc-900/50 rounded-lg px-3 py-1">
                           <Calendar className="w-3 h-3 text-gray-400" />
                           <span className="text-xs text-gray-300 font-mono">
                             {post.month} {post.day}, {post.year}

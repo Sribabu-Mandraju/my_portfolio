@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { TrendingUp, Download, ExternalLink } from "lucide-react"
+import { TrendingUp, Download, ExternalLink } from "lucide-react";
 
 const skillReports = [
   {
@@ -45,11 +45,11 @@ const skillReports = [
     reportUrl: "#",
     description: "User interface design and user experience optimization",
   },
-]
+];
 
 export default function SkillProgress() {
   return (
-    <div className="bg-gray-800 border border-gray-700 rounded-xl p-6 lg:p-8">
+    <div className="bg-zinc-950 border border-zinc-900 rounded-xl p-6 lg:p-8">
       <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
         <TrendingUp className="w-6 h-6 mr-2 text-blue-400" />
         Skill Progress Reports
@@ -59,15 +59,19 @@ export default function SkillProgress() {
         {skillReports.map((skill) => (
           <div
             key={skill.name}
-            className="bg-gray-700/50 border border-gray-600 rounded-lg p-6 hover:border-gray-500 transition-colors duration-200"
+            className="bg-zinc-900/50 border border-zinc-800 rounded-lg p-6 hover:border-gray-500 transition-colors duration-200"
           >
             <div className="flex items-start justify-between mb-4">
               <div>
-                <h3 className="text-lg font-bold text-white mb-1">{skill.name}</h3>
+                <h3 className="text-lg font-bold text-white mb-1">
+                  {skill.name}
+                </h3>
                 <p className="text-sm text-gray-400">{skill.description}</p>
               </div>
               <div className="text-right">
-                <div className="text-2xl font-bold text-white mb-1">{skill.progress}%</div>
+                <div className="text-2xl font-bold text-white mb-1">
+                  {skill.progress}%
+                </div>
                 <div className="text-xs text-gray-400">Proficiency</div>
               </div>
             </div>
@@ -104,11 +108,12 @@ export default function SkillProgress() {
       {/* Additional Info */}
       <div className="mt-8 p-4 bg-blue-600/10 border border-blue-600/20 rounded-lg">
         <p className="text-blue-400 text-sm leading-relaxed">
-          <strong>Note:</strong> These progress reports showcase my continuous learning journey and practical
-          application of technologies. Each report includes project examples, code samples, and learning milestones
-          achieved.
+          <strong>Note:</strong> These progress reports showcase my continuous
+          learning journey and practical application of technologies. Each
+          report includes project examples, code samples, and learning
+          milestones achieved.
         </p>
       </div>
     </div>
-  )
+  );
 }

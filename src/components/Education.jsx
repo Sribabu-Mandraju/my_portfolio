@@ -1,21 +1,25 @@
-"use client"
+"use client";
 
-import { GraduationCap, MapPin, Calendar, BookOpen } from 'lucide-react'
+import { GraduationCap, MapPin, Calendar, BookOpen } from "lucide-react";
 
 export default function Education({ education }) {
   return (
-    <div className="bg-gray-800 border border-gray-700 rounded-xl p-6 lg:p-8">
+    <div className="bg-zinc-950 border border-zinc-900 rounded-xl p-6 lg:p-8">
       <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
         <GraduationCap className="w-6 h-6 mr-2 text-blue-400" />
         Education
       </h2>
-      
-      <div className="bg-gray-700/50 border border-gray-600 rounded-lg p-6">
+
+      <div className="bg-zinc-900/50 border border-zinc-800 rounded-lg p-6">
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-4">
           <div>
-            <h3 className="text-xl font-bold text-white mb-2">{education.degree}</h3>
+            <h3 className="text-xl font-bold text-white mb-2">
+              {education.degree}
+            </h3>
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-gray-400 mb-2">
-              <span className="font-semibold text-blue-400">{education.institution}</span>
+              <span className="font-semibold text-blue-400">
+                {education.institution}
+              </span>
               <div className="flex items-center gap-1">
                 <MapPin className="w-4 h-4" />
                 {education.location}
@@ -41,7 +45,10 @@ export default function Education({ education }) {
           </h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             {education.coursework.map((course) => (
-              <div key={course} className="bg-gray-600/50 text-gray-300 text-sm px-3 py-2 rounded-lg">
+              <div
+                key={course}
+                className="bg-gray-600/50 text-gray-300 text-sm px-3 py-2 rounded-lg"
+              >
                 {course}
               </div>
             ))}
@@ -49,5 +56,5 @@ export default function Education({ education }) {
         </div>
       </div>
     </div>
-  )
+  );
 }

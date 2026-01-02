@@ -12,7 +12,7 @@
     if (!headings.length) return null
 
     return (
-      <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4 mb-6">
+      <div className="bg-zinc-950/50 border border-zinc-900 rounded-lg p-4 mb-6">
         <div className="flex items-center space-x-2 mb-3">
           <List className="w-4 h-4 text-gray-400" />
           <h3 className="text-sm font-semibold text-gray-300">Table of Contents</h3>
@@ -52,7 +52,7 @@
     }, [])
 
     return (
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-800 z-50">
+      <div className="fixed top-0 left-0 w-full h-1 bg-zinc-950 z-50">
         <div
           className="h-full bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-150"
           style={{ width: `${progress}%` }}
@@ -182,12 +182,12 @@
 
     if (loading) {
       return (
-        <div className="flex flex-col items-center justify-center p-12 bg-gray-800 rounded-xl border border-gray-700">
+        <div className="flex flex-col items-center justify-center p-12 bg-zinc-950 rounded-xl border border-gray-700">
           <div className="flex items-center space-x-3 mb-4">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
             <span className="text-gray-400 text-lg">Loading Markdown...</span>
           </div>
-          <div className="w-64 bg-gray-700 rounded-full h-2">
+          <div className="w-64 bg-zinc-900 rounded-full h-2">
             <div className="bg-blue-500 h-2 rounded-full animate-pulse" style={{ width: "60%" }}></div>
           </div>
         </div>
@@ -225,7 +225,7 @@
         <ReadingProgress />
 
         {/* Article Meta Info */}
-        <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4 mb-6">
+        <div className="bg-zinc-950/50 border border-zinc-900 rounded-lg p-4 mb-6">
           <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400">
             <div className="flex items-center space-x-2">
               <BookOpen className="w-4 h-4" />
@@ -371,7 +371,7 @@
           }
         `}</style>
 
-        <div className="bg-gray-900 rounded-xl border border-gray-700 p-6 lg:p-8 shadow-lg">
+        <div className="bg-black rounded-xl border border-zinc-900 p-6 lg:p-8 shadow-lg">
           <div className="markdown-body">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}

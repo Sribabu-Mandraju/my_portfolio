@@ -65,7 +65,7 @@ export const DevelopmentPreloader = ({ isLoading, progress }) => {
   ]
 
   return (
-    <div className="fixed inset-0 bg-gray-900 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
       {/* Background Code Effect */}
       <div className="absolute inset-0 overflow-hidden opacity-10">
         <div className="absolute top-0 left-0 w-full h-full">
@@ -91,18 +91,18 @@ export const DevelopmentPreloader = ({ isLoading, progress }) => {
           <div className="relative inline-block">
             <div className="w-20 h-20 mx-auto mb-4 relative">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full animate-pulse"></div>
-              <div className="absolute inset-2 bg-gray-900 rounded-full flex items-center justify-center">
+              <div className="absolute inset-2 bg-black rounded-full flex items-center justify-center">
                 <Code className="w-8 h-8 text-blue-400" />
               </div>
             </div>
             {/* Rotating Icons */}
-            <div className="absolute -top-2 -right-2 w-6 h-6 bg-gray-800 rounded-full flex items-center justify-center animate-spin">
+            <div className="absolute -top-2 -right-2 w-6 h-6 bg-zinc-950 rounded-full flex items-center justify-center animate-spin">
               <GitBranch className="w-3 h-3 text-cyan-400" />
             </div>
-            <div className="absolute -bottom-2 -left-2 w-6 h-6 bg-gray-800 rounded-full flex items-center justify-center animate-bounce">
+            <div className="absolute -bottom-2 -left-2 w-6 h-6 bg-zinc-950 rounded-full flex items-center justify-center animate-bounce">
               <Package className="w-3 h-3 text-orange-400" />
             </div>
-            <div className="absolute top-1/2 -right-4 w-6 h-6 bg-gray-800 rounded-full flex items-center justify-center animate-pulse">
+            <div className="absolute top-1/2 -right-4 w-6 h-6 bg-zinc-950 rounded-full flex items-center justify-center animate-pulse">
               <Cloud className="w-3 h-3 text-pink-400" />
             </div>
           </div>
@@ -115,8 +115,8 @@ export const DevelopmentPreloader = ({ isLoading, progress }) => {
             <span className="text-xs text-gray-400">Progress</span>
             <span className="text-xs text-blue-400 font-mono">{Math.round(progress)}%</span>
           </div>
-          <div className="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
-            <div className="relative h-full bg-gray-700 rounded-full">
+          <div className="w-full bg-zinc-950 rounded-full h-2 overflow-hidden">
+            <div className="relative h-full bg-zinc-900 rounded-full">
               <div
                 className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full transition-all duration-300 ease-out relative overflow-hidden"
                 style={{ width: `${progress}%` }}
