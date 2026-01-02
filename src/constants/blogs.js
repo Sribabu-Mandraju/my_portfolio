@@ -8,10 +8,11 @@ export const blogs = [
       {
         id: "React Navite Guide For Beginners",
         file: "React_native_guide.md",
-        title: "Getting Started with React",
+        title: "Getting Started with React Native",
         tags: ["react", "javascript", "react native"],
         url:
-          "https://raw.githubusercontent.com/Sribabu-Mandraju/my_portfolio/refs/heads/main/src/blogs_mds/TransaparentUpgradableProxy.md",
+          // "https://raw.githubusercontent.com/Sribabu-Mandraju/my_portfolio/refs/heads/main/src/blogs_mds/TransaparentUpgradableProxy.md",
+          "https://raw.githubusercontent.com/Sribabu-Mandraju/my_portfolio/refs/heads/main/src/blogs_mds/React_native_guide.md",
         date: "2025-01-14",
       },
     ],
@@ -28,7 +29,7 @@ export const blogs = [
         title: "Introduction to proxies",
         tags: ["blockchain", "solidity", "proxies"],
         url:
-          "https://raw.githubusercontent.com/Sribabu-Mandraju/my_portfolio/refs/heads/main/src/blogs_mds/Proxy.md",
+          "https://raw.githubusercontent.com/Sribabu-Mandraju/my_portfolio/refs/heads/main/src/blogs_mds/React_native_guide.md",
       },
     ],
   },

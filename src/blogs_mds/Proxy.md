@@ -83,6 +83,27 @@ Inside the fallback function, the proxy calls the implementation contract using 
 
 ## Implementation Contracts (A & B)
 
+```solidity
+contract ImplementationA {
+    uint256 number;
+
+    function increment() public {
+        // increment logic : it increments value by 1;
+        number += 1;
+    }
+}
+
+
+contract ImplementationB {
+    uint256 number;
+
+    function increment() public {
+        // increment logic : it increments value by 2;
+        number += 2;
+    }
+}
+```
+
 - **ImplementationA**  
   Contains logic where the `increment` function increases `number` by **1**.
 
