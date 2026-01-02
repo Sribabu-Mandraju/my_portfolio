@@ -2,58 +2,67 @@
 
 ## What are Proxies?
 
-In general, smart contracts are **immutable** once they are deployed.
+Smart contracts are **immutable** once deployed to the blockchain. This means that once a contract is deployed, its code cannot be changed or updated.
 
-In traditional **Web2**, we can easily change business logic by simply updating the code. However, in **Web3**, this is not possible because smart contracts are immutable by nature—once they are deployed on-chain, the logic cannot be modified.
+In traditional **Web2** applications, we can easily update business logic by deploying new code. However, in **Web3**, this is not possible because smart contracts are immutable by nature—once deployed on-chain, the logic cannot be modified.
 
-If we want to change the business logic or fix bugs, we must deploy a **new smart contract**. But the major problem is that the **data stored in the old smart contract cannot be reused or migrated easily**, which creates serious limitations.
+If we want to change the business logic or fix bugs, we must deploy a **new smart contract**. The major problem is that the **data stored in the old smart contract cannot be easily reused or migrated**, which creates serious limitations for upgradable systems.
 
-To overcome this issue, Solidity introduces a new methodology known as **proxy contracts**. Proxies allow us to **separate data storage from business logic**, enabling us to upgrade the logic contract while keeping the **same data and contract address** intact.
-
----
-
-## Prerequisites to Understand This Blog
-
-- Solidity basics  
-- How the EVM stores data (storage slots)  
-- How `delegatecall` works  
+To overcome this issue, Solidity introduces a design pattern known as **proxy contracts**. Proxies allow us to **separate data storage from business logic**, enabling us to upgrade the logic contract while keeping the **same data and contract address** intact.
 
 ---
 
-## What is a Proxy (Simple Explanation)
+## Prerequisites
 
-In simple terms, proxies can be explained as smart contracts that **execute logic from another smart contract while using their own storage (variables)**.
+Before diving into this blog, you should be familiar with:
+
+- Solidity basics
+- How the EVM stores data (storage slots)
+- How `delegatecall` works
 
 ---
 
-## Proxy Contract
+## What is a Proxy? (Simple Explanation)
 
-```javascript
+In simple terms, a proxy is a smart contract that **executes logic from another smart contract while using its own storage (variables)**.
 
+Think of it like this:
+
+- **Proxy Contract** = The "shell" that holds your data and forwards function calls
+- **Implementation Contract** = The "brain" that contains the actual business logic
+
+The proxy forwards all function calls to the implementation contract using `delegatecall`, which executes the implementation's code in the context of the proxy's storage.
+
+---
+
+## Proxy Contract Implementation
+
+Here's a simple proxy contract implementation:
+
+```solidity
 contract Proxy {
-    // random slote to store implementation contract address to avoid storage collisions 
+    // Random storage slot to store implementation contract address
+    // This avoids storage collisions with the implementation contract
     bytes32 private constant IMPLEMENTATION_SLOT =
         0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc;
 
     uint256 public number;
 
     constructor(address _implementation) {
-
-        // storing implementation address in the storage slot of IMPLEMENTATION_SLOT
+        // Store the implementation address in the designated storage slot
         assembly {
             sstore(IMPLEMENTATION_SLOT, _implementation)
         }
     }
 
-    // to change implementation contract address to change business logic 
+    // Function to change the implementation contract address (upgrade logic)
     function setImplementation(address _newImplementation) public {
         assembly {
             sstore(IMPLEMENTATION_SLOT, _newImplementation)
         }
     }
 
-
-    
+    // Fallback function that forwards all calls to the implementation contract
     fallback(bytes calldata data) external returns (bytes memory) {
         address impl;
         assembly {
@@ -66,49 +75,59 @@ contract Proxy {
     }
 }
 ```
-The above code is a **simple version of a proxy contract**.
 
-- #### IMPLEMENTATION_SLOT
-  A special (random) storage slot used to store the address of the implementation contract where the business logic exists.
+### Key Components Explained
 
-- #### uint256 public number
-  This variable occupies the **first storage slot (slot 0)** of the proxy contract.
+#### `IMPLEMENTATION_SLOT`
 
-In smart contracts, when we call a **function selector that does not exist** in the contract, the call is forwarded to the **fallback function**.  
-The fallback function is a special function in Solidity.
+A special (random) storage slot used to store the address of the implementation contract. We use a random slot to avoid storage collisions with variables in the implementation contract.
 
-Inside the fallback function, the proxy calls the implementation contract using **`delegatecall`**, which is a low-level call.
+#### `uint256 public number`
+
+This variable occupies the **first storage slot (slot 0)** of the proxy contract. This is where the actual data is stored.
+
+#### `fallback` Function
+
+In Solidity, when you call a function that doesn't exist in a contract, the call is forwarded to the **fallback function**. The fallback function is a special function that handles unknown function calls.
+
+Inside the fallback function, the proxy:
+
+1. Retrieves the implementation contract address from storage
+2. Uses `delegatecall` to execute the implementation's code
+3. Returns the result
+
+**Important**: `delegatecall` executes the implementation's code in the context of the proxy's storage, meaning all state changes happen in the proxy contract, not the implementation contract.
 
 ---
 
-## Implementation Contracts (A & B)
+## Implementation Contracts
+
+Let's create two implementation contracts with different logic:
 
 ```solidity
 contract ImplementationA {
     uint256 number;
 
     function increment() public {
-        // increment logic : it increments value by 1;
+        // Increment logic: increases value by 1
         number += 1;
     }
 }
-
 
 contract ImplementationB {
     uint256 number;
 
     function increment() public {
-        // increment logic : it increments value by 2;
+        // Increment logic: increases value by 2
         number += 2;
     }
 }
 ```
 
-- **ImplementationA**  
-  Contains logic where the `increment` function increases `number` by **1**.
+### Implementation Details
 
-- **ImplementationB**  
-  Contains logic where the `increment` function increases `number` by **2**.
+- **ImplementationA**: Contains logic where the `increment` function increases `number` by **1**.
+- **ImplementationB**: Contains logic where the `increment` function increases `number` by **2**.
 
 Initially, the proxy contract is deployed with **ImplementationA** as its logic contract.
 
@@ -116,88 +135,104 @@ Initially, the proxy contract is deployed with **ImplementationA** as its logic 
 
 ## How Function Calls Work
 
-The proxy contract does not directly define the `increment` function.
-
-Instead, we call the function using the implementation’s ABI but pass the **proxy contract address**:
+The proxy contract does not directly define the `increment` function. Instead, we call the function using the implementation's interface but pass the **proxy contract address**:
 
 ```solidity
 ImplementationA(address(proxy_contract)).increment();
 ```
 
- In the above code it calls increment logic of implementation A , but the value not reflect in imp1 contract it reflects in the proxy contract
- 
- ```solidity
-     // we call proxy contract by using implementation interface
-    function test_proxy() public {
-        uint256 numberValueBeforeCall = proxy_contract.number(); // reading values directly from proxy contract
+**Important**: The above code calls the increment logic from ImplementationA, but the value change is reflected in the **proxy contract's storage**, not in the ImplementationA contract. This is because `delegatecall` executes code in the context of the proxy's storage.
 
-        
-        ImplementationA(address(proxy_contract)).increment();
+### Example: Testing with ImplementationA
 
-        uint256 numberValueAfterCall = proxy_contract.number();
+```solidity
+// We call the proxy contract using the implementation interface
+function test_proxy() public {
+    uint256 numberValueBeforeCall = proxy_contract.number(); // Reading value directly from proxy contract
 
-        assertEq(numberValueAfterCall,numberValueBeforeCall + 1); // increment by 1
-    }
+    ImplementationA(address(proxy_contract)).increment();
 
- ```
-  ```solidity
-  [38431] TestProxy::test_proxy()
-    ├─ [2402] Proxy::number() [staticcall]
-    │   └─ ← [Return] 0
-    ├─ [25689] Proxy::fallback()
-    │   ├─ [20431] ImplementationA::increment() [delegatecall]
-    │   │   ├─  storage changes:
-    │   │   │   @ 0: 0 → 1
-    │   │   └─ ← [Stop]
-    │   └─ ← [Return]
-    ├─ [402] Proxy::number() [staticcall]
-    │   └─ ← [Return] 1
-    ├─ [0] VM::assertEq(1, 1) [staticcall]
-    │   └─ ← [Return]
-    ├─  storage changes:
-    │   @ 0: 0 → 1
-    └─ ← [Stop]
-  ```
+    uint256 numberValueAfterCall = proxy_contract.number();
 
-  In above test proxy contract uses `ImplementationA` logic so it is increments the value of number in proxy contract by `1` 
-  ```solidity
-    function test_proxy_with_new_implementation_logic() public {
-        // changing implementation contract address in proxy;
-        proxy_contract.setImplementation(address(imp2));  // new logic that increments by 2
+    assertEq(numberValueAfterCall, numberValueBeforeCall + 1); // Increment by 1
+}
+```
 
-        uint256 numberValueBeforeCall = proxy_contract.number(); // reading values directly from proxy contract
+**Trace Output:**
 
-        ImplementationB(address(proxy_contract)).increment();
+```solidity
+[38431] TestProxy::test_proxy()
+  ├─ [2402] Proxy::number() [staticcall]
+  │   └─ ← [Return] 0
+  ├─ [25689] Proxy::fallback()
+  │   ├─ [20431] ImplementationA::increment() [delegatecall]
+  │   │   ├─  storage changes:
+  │   │   │   @ 0: 0 → 1
+  │   │   └─ ← [Stop]
+  │   └─ ← [Return]
+  ├─ [402] Proxy::number() [staticcall]
+  │   └─ ← [Return] 1
+  ├─ [0] VM::assertEq(1, 1) [staticcall]
+  │   └─ ← [Return]
+  ├─  storage changes:
+  │   @ 0: 0 → 1
+  └─ ← [Stop]
+```
 
-        uint256 numberValueAfterCall = proxy_contract.number();
+In the above test, the proxy contract uses `ImplementationA` logic, so it increments the value of `number` in the proxy contract by **1**.
 
-        assertEq(numberValueAfterCall,numberValueBeforeCall + 2); // increment by 2
-    }
-  ```
-  ```solidity
-   [44690] TestProxy::test_proxy_with_new_implementation_logic()
-    ├─ [5455] Proxy::setImplementation(ImplementationB: [0x2e234DAe75C793f67A35089C9d99245E1C58470b])
-    │   ├─  storage changes:
-    │   │   @ 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc: 0x0000000000000000000000005615deb798bb3e4dfa0139dfa1b3d433cc23b72f → 0x0000000000000000000000002e234dae75c793f67a35089c9d99245e1c58470b
-    │   └─ ← [Stop]
-    ├─ [2402] Proxy::number() [staticcall]
-    │   └─ ← [Return] 0
-    ├─ [23689] Proxy::fallback()
-    │   ├─ [20431] ImplementationB::increment() [delegatecall]
-    │   │   ├─  storage changes:
-    │   │   │   @ 0: 0 → 2
-    │   │   └─ ← [Stop]
-    │   └─ ← [Return]
-    ├─ [402] Proxy::number() [staticcall]
-    │   └─ ← [Return] 2
-    ├─ [0] VM::assertEq(2, 2) [staticcall]
-    │   └─ ← [Return]
-    ├─  storage changes:
-    │   @ 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc: 0x0000000000000000000000005615deb798bb3e4dfa0139dfa1b3d433cc23b72f → 0x0000000000000000000000002e234dae75c793f67a35089c9d99245e1c58470b
-    │   @ 0: 0 → 2
-    └─ ← [Stop]
-  ```
+### Example: Upgrading to ImplementationB
 
-  In above test case we modified implementation logic of proxy contract to the address of  `ImplementationB` which have logic of increment value of number in proxy contract by `2` 
+```solidity
+function test_proxy_with_new_implementation_logic() public {
+    // Changing the implementation contract address in the proxy
+    proxy_contract.setImplementation(address(imp2)); // New logic that increments by 2
 
- 
+    uint256 numberValueBeforeCall = proxy_contract.number(); // Reading value directly from proxy contract
+
+    ImplementationB(address(proxy_contract)).increment();
+
+    uint256 numberValueAfterCall = proxy_contract.number();
+
+    assertEq(numberValueAfterCall, numberValueBeforeCall + 2); // Increment by 2
+}
+```
+
+**Trace Output:**
+
+```solidity
+[44690] TestProxy::test_proxy_with_new_implementation_logic()
+  ├─ [5455] Proxy::setImplementation(ImplementationB: [0x2e234DAe75C793f67A35089C9d99245E1C58470b])
+  │   ├─  storage changes:
+  │   │   @ 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc: 0x0000000000000000000000005615deb798bb3e4dfa0139dfa1b3d433cc23b72f → 0x0000000000000000000000002e234dae75c793f67a35089c9d99245e1c58470b
+  │   └─ ← [Stop]
+  ├─ [2402] Proxy::number() [staticcall]
+  │   └─ ← [Return] 0
+  ├─ [23689] Proxy::fallback()
+  │   ├─ [20431] ImplementationB::increment() [delegatecall]
+  │   │   ├─  storage changes:
+  │   │   │   @ 0: 0 → 2
+  │   │   └─ ← [Stop]
+  │   └─ ← [Return]
+  ├─ [402] Proxy::number() [staticcall]
+  │   └─ ← [Return] 2
+  ├─ [0] VM::assertEq(2, 2) [staticcall]
+  │   └─ ← [Return]
+  ├─  storage changes:
+  │   @ 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc: 0x0000000000000000000000005615deb798bb3e4dfa0139dfa1b3d433cc23b72f → 0x0000000000000000000000002e234dae75c793f67a35089c9d99245e1c58470b
+  │   @ 0: 0 → 2
+  └─ ← [Stop]
+```
+
+In the above test case, we modified the implementation logic of the proxy contract to point to `ImplementationB`, which has logic to increment the value of `number` in the proxy contract by **2**.
+
+---
+
+## Key Takeaways
+
+1. **Proxy contracts** separate storage from logic, allowing upgrades while maintaining the same address and data.
+2. **`delegatecall`** executes implementation code in the proxy's storage context.
+3. **Storage slots** must be carefully managed to avoid collisions between proxy and implementation contracts.
+4. **Upgrading** is as simple as changing the implementation address stored in the proxy.
+
+This pattern is fundamental to building upgradable smart contracts in Solidity while maintaining data persistence and the same contract address.
