@@ -124,7 +124,7 @@ project-root/
 
 ### Navigation Examples
 
-**Programmatic Navigation:**
+#### Programmatic Navigation
 
 ```tsx
 import { router } from "expo-router";
@@ -137,7 +137,7 @@ router.replace("/about"); // Replaces current route
 router.back();
 ```
 
-**Link Component:**
+#### Link Component
 
 ```tsx
 import { Link } from "expo-router";
@@ -145,7 +145,7 @@ import { Link } from "expo-router";
 <Link href="/details">Go to Details</Link>;
 ```
 
-**Passing Parameters:**
+#### Passing Parameters
 
 ```tsx
 // Navigate with params
