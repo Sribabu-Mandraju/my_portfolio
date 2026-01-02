@@ -29,7 +29,7 @@ export const blogs = [
         title: "Introduction to proxies",
         tags: ["blockchain", "solidity", "proxies"],
         url:
-          "https://raw.githubusercontent.com/Sribabu-Mandraju/my_portfolio/refs/heads/main/src/blogs_mds/React_native_guide.md",
+          "https://raw.githubusercontent.com/Sribabu-Mandraju/my_portfolio/refs/heads/main/src/blogs_mds/Proxy.md",
       },
     ],
   },
