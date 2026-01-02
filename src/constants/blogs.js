@@ -33,24 +33,24 @@ export const blogs = [
       },
     ],
   },
-  {
-    name: "Tutorials",
-    url: "/blogs/tutorials",
-    date: "2024-11-20",
-    title: "Tutorials",
-    category: "Tutorial",
-    blogs: [
-      {
-        id: "tutorial1",
-        file: "tutorial1.md",
-        title: "Learning Web Development",
-        tags: ["tutorial", "web", "learning"],
-        url:
-          "https://raw.githubusercontent.com/TheMj0ln1r/novel-cryptography-project/refs/heads/main/README.md",
-        date: "2024-11-20",
-      },
-    ],
-  },
+  // {
+  //   name: "Tutorials",
+  //   url: "/blogs/tutorials",
+  //   date: "2024-11-20",
+  //   title: "Tutorials",
+  //   category: "Tutorial",
+  //   blogs: [
+  //     {
+  //       id: "tutorial1",
+  //       file: "tutorial1.md",
+  //       title: "Learning Web Development",
+  //       tags: ["tutorial", "web", "learning"],
+  //       url:
+  //         "https://raw.githubusercontent.com/TheMj0ln1r/novel-cryptography-project/refs/heads/main/README.md",
+  //       date: "2024-11-20",
+  //     },
+  //   ],
+  // },
 ];
 
 // Helper function to get all individual blogs
