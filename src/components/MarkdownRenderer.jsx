@@ -713,7 +713,7 @@ function MarkdownRenderer({ url }) {
             }
           `}</style>
 
-          <div className="bg-zinc-950 rounded-xl border border-zinc-900 p-6 lg:p-8 shadow-lg w-full">
+          <div className=" rounded-xl border border-zinc-900 p-6 lg:p-8 shadow-lg w-full">
             <div className="markdown-body">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
@@ -882,5 +882,4 @@ function MarkdownRenderer({ url }) {
     </div>
   );
 }
-
 export default MarkdownRenderer;

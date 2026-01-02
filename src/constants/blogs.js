@@ -6,10 +6,10 @@ export const blogs = [
     category: "Development",
     blogs: [
       {
-        id: "webdev1",
-        file: "webdev1.md",
+        id: "React Navite Guide For Beginners",
+        file: "React_native_guide.md",
         title: "Getting Started with React",
-        tags: ["react", "javascript", "web"],
+        tags: ["react", "javascript", "react native"],
         url:
           "https://raw.githubusercontent.com/Sribabu-Mandraju/my_portfolio/refs/heads/main/src/blogs_mds/TransaparentUpgradableProxy.md",
         date: "2025-01-14",
@@ -17,19 +17,18 @@ export const blogs = [
     ],
   },
   {
-    name: "Cybersecurity",
+    name: "Blockchain",
     date: "2024-12-15",
     title: "Cybersecurity",
     category: "Security",
     blogs: [
       {
-        id: "security1",
-        file: "security1.md",
-        title: "Introduction to Cybersecurity",
-        tags: ["security", "cybersecurity", "tutorial"],
+        id: "Proxies",
+        file: "proxies.md",
+        title: "Introduction to proxies",
+        tags: ["blockchain", "solidity", "proxies"],
         url:
-          "https://raw.githubusercontent.com/TheMj0ln1r/novel-cryptography-project/refs/heads/main/README.md",
-        date: "2024-12-15",
+          "https://raw.githubusercontent.com/Sribabu-Mandraju/my_portfolio/refs/heads/main/src/blogs_mds/Proxy.md",
       },
     ],
   },
