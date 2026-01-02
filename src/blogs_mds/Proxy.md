@@ -122,3 +122,82 @@ Instead, we call the function using the implementation’s ABI but pass the **pr
 
 ```solidity
 ImplementationA(address(proxy_contract)).increment();
+```
+
+ In the above code it calls increment logic of implementation A , but the value not reflect in imp1 contract it reflects in the proxy contract
+ 
+ ```solidity
+     // we call proxy contract by using implementation interface
+    function test_proxy() public {
+        uint256 numberValueBeforeCall = proxy_contract.number(); // reading values directly from proxy contract
+
+        
+        ImplementationA(address(proxy_contract)).increment();
+
+        uint256 numberValueAfterCall = proxy_contract.number();
+
+        assertEq(numberValueAfterCall,numberValueBeforeCall + 1); // increment by 1
+    }
+
+ ```
+  ```solidity
+  [38431] TestProxy::test_proxy()
+    ├─ [2402] Proxy::number() [staticcall]
+    │   └─ ← [Return] 0
+    ├─ [25689] Proxy::fallback()
+    │   ├─ [20431] ImplementationA::increment() [delegatecall]
+    │   │   ├─  storage changes:
+    │   │   │   @ 0: 0 → 1
+    │   │   └─ ← [Stop]
+    │   └─ ← [Return]
+    ├─ [402] Proxy::number() [staticcall]
+    │   └─ ← [Return] 1
+    ├─ [0] VM::assertEq(1, 1) [staticcall]
+    │   └─ ← [Return]
+    ├─  storage changes:
+    │   @ 0: 0 → 1
+    └─ ← [Stop]
+  ```
+
+  In above test proxy contract uses `ImplementationA` logic so it is increments the value of number in proxy contract by `1` 
+  ```solidity
+    function test_proxy_with_new_implementation_logic() public {
+        // changing implementation contract address in proxy;
+        proxy_contract.setImplementation(address(imp2));  // new logic that increments by 2
+
+        uint256 numberValueBeforeCall = proxy_contract.number(); // reading values directly from proxy contract
+
+        ImplementationB(address(proxy_contract)).increment();
+
+        uint256 numberValueAfterCall = proxy_contract.number();
+
+        assertEq(numberValueAfterCall,numberValueBeforeCall + 2); // increment by 2
+    }
+  ```
+  ```solidity
+   [44690] TestProxy::test_proxy_with_new_implementation_logic()
+    ├─ [5455] Proxy::setImplementation(ImplementationB: [0x2e234DAe75C793f67A35089C9d99245E1C58470b])
+    │   ├─  storage changes:
+    │   │   @ 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc: 0x0000000000000000000000005615deb798bb3e4dfa0139dfa1b3d433cc23b72f → 0x0000000000000000000000002e234dae75c793f67a35089c9d99245e1c58470b
+    │   └─ ← [Stop]
+    ├─ [2402] Proxy::number() [staticcall]
+    │   └─ ← [Return] 0
+    ├─ [23689] Proxy::fallback()
+    │   ├─ [20431] ImplementationB::increment() [delegatecall]
+    │   │   ├─  storage changes:
+    │   │   │   @ 0: 0 → 2
+    │   │   └─ ← [Stop]
+    │   └─ ← [Return]
+    ├─ [402] Proxy::number() [staticcall]
+    │   └─ ← [Return] 2
+    ├─ [0] VM::assertEq(2, 2) [staticcall]
+    │   └─ ← [Return]
+    ├─  storage changes:
+    │   @ 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc: 0x0000000000000000000000005615deb798bb3e4dfa0139dfa1b3d433cc23b72f → 0x0000000000000000000000002e234dae75c793f67a35089c9d99245e1c58470b
+    │   @ 0: 0 → 2
+    └─ ← [Stop]
+  ```
+
+  In above test case we modified implementation logic of proxy contract to the address of  `ImplementationB` which have logic of increment value of number in proxy contract by `2` 
+
+ 

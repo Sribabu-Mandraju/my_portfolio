@@ -126,12 +126,24 @@ function CodeBlock({ className, children }) {
   const lineCount = codeString.split("\n").length;
   const shouldCollapse = lineCount > 20;
 
+  // If it's a single line and short (less than 80 chars), render as inline code
+  const isShortSingleLine = lineCount === 1 && codeString.length < 80;
+
   const handleCopy = () => {
     navigator.clipboard.writeText(codeString).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 1200);
     });
   };
+
+  // Render short single-line code as inline style
+  if (isShortSingleLine && !isShell) {
+    return (
+      <code className="px-1.5 py-0.5 bg-zinc-900 text-gray-300 rounded text-sm font-mono border border-zinc-800">
+        {codeString}
+      </code>
+    );
+  }
 
   if (isShell) {
     return (
@@ -674,11 +686,14 @@ function MarkdownRenderer({ url }) {
             .markdown-body table tr:nth-child(2n) {
               background-color: rgba(110, 118, 129, 0.05);
             }
-            .markdown-body code {
-              color: var(--color-fg-default);
+            .markdown-body code:not(pre code) {
+              color: #e6edf3;
               padding: 0.2em 0.4em;
-              border-radius: 3px;
-              background-color: transparent;
+              border-radius: 4px;
+              background-color: #181818;
+              border: 1px solid #2a2a2a;
+              font-size: 0.9em;
+              font-family: 'Fira Code', 'Menlo', 'Monaco', 'Consolas', monospace;
             }
             .markdown-body a {
               color: var(--color-accent-fg);
@@ -720,7 +735,14 @@ function MarkdownRenderer({ url }) {
                 components={{
                   code({ node, inline, className, children, ...props }) {
                     if (inline) {
-                      return <code {...props}>{children}</code>;
+                      return (
+                        <code
+                          className="px-1.5 py-0.5 bg-zinc-900 text-gray-300 rounded text-sm font-mono border border-zinc-800"
+                          {...props}
+                        >
+                          {children}
+                        </code>
+                      );
                     }
                     return (
                       <CodeBlock className={className}>{children}</CodeBlock>
