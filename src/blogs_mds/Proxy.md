@@ -68,10 +68,10 @@ contract Proxy {
 ```
 The above code is a **simple version of a proxy contract**.
 
-- `IMPLEMENTATION_SLOT`:  
+- #### IMPLEMENTATION_SLOT
   A special (random) storage slot used to store the address of the implementation contract where the business logic exists.
 
-- **uint256 public number**:  
+- #### uint256 public number
   This variable occupies the **first storage slot (slot 0)** of the proxy contract.
 
 In smart contracts, when we call a **function selector that does not exist** in the contract, the call is forwarded to the **fallback function**.  
