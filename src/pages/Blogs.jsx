@@ -59,7 +59,7 @@ export default function Blogs() {
   return (
     <div className="flex flex-1 overflow-hidden flex-col lg:flex-row bg-black min-h-screen">
       {/* Main Content */}
-      <main className="flex-1 p-4 lg:p-6 overflow-y-auto" aria-label="Blogs">
+      <main className="flex-1 lg:p-6 overflow-y-auto" aria-label="Blogs">
         {/* Stats Cards - Hidden on mobile, shown on larger screens */}
         <div className="mt-8 hidden md:grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <div className="bg-zinc-950 rounded-lg p-4 border border-zinc-900">
