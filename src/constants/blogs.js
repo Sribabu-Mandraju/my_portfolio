@@ -1,3 +1,5 @@
+import proxyBlog from "../blogs_mds/Proxy.md";
+
 export const blogs = [
   {
     name: "Web Development",
@@ -31,7 +33,16 @@ export const blogs = [
         url:
           "https://raw.githubusercontent.com/Sribabu-Mandraju/my_portfolio/refs/heads/main/src/blogs_mds/Proxy.md",
       },
+      {
+        id: "OpenCover insured vaults audit insights",
+        file: "",
+        title: "Introduction to proxies",
+        tags: ["blockchain", "solidity", "proxies"],
+        url:
+          "https://raw.githubusercontent.com/Sribabu-Mandraju/my_portfolio/refs/heads/main/src/blogs_mds/coverVaultAuditInsights.md",
+      },
     ],
+    
   },
   // {
   //   name: "Tutorials",
