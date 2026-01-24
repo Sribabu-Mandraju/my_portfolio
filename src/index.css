@@ -13,8 +13,9 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -39,7 +40,8 @@ body {
 
 /* Smooth transitions */
 * {
-  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 /* Focus styles */
@@ -58,25 +60,100 @@ a:focus {
   }
 }
 
-
 style attribute {
   background: transparent !important;
 }
 
-
-
 .markdown-body pre {
   background-color: transparent !important; /* or your preferred color */
+  padding: 5px !important;
 }
 
 .markdown-body {
-  overflow-y: scroll;
-  max-height: 100vh;
   scroll-behavior: smooth !important;
+  height: auto;
+  min-height: auto;
 }
 
-.title-text{
+.title-text {
   font-family: "Jersey 10", sans-serif;
   font-weight: 400;
   font-style: normal;
+}
+
+/* KaTeX Math Styling for Dark Theme */
+.katex {
+  color: #e5e7eb !important;
+}
+
+.katex-display {
+  margin: 1.5rem 0 !important;
+  text-align: center;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.katex-display > .katex {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Math inline styling */
+.katex-display .katex {
+  background-color: rgba(39, 39, 42, 0.5);
+  border: 1px solid rgba(113, 113, 122, 0.3);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* Mobile math responsiveness */
+@media (max-width: 768px) {
+  .katex-display {
+    margin: 1rem 0 !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .katex-display .katex {
+    padding: 0.75rem;
+    font-size: 0.9em;
+  }
+}
+
+/* Override KaTeX colors for dark theme */
+.katex .mord,
+.katex .mrel,
+.katex .mbin,
+.katex .mopen,
+.katex .mclose,
+.katex .mpunct,
+.katex .minner {
+  color: #e5e7eb !important;
+}
+
+.katex .mop {
+  color: #60a5fa !important; /* Blue for operators */
+}
+
+.katex .mtight {
+  color: #e5e7eb !important;
+}
+
+/* Fraction lines */
+.katex .frac-line {
+  border-bottom-color: #9ca3af !important;
+}
+
+/* Square roots */
+.katex .sqrt > .root {
+  color: #60a5fa !important;
+}
+
+/* Parentheses and brackets */
+.katex .delimsizing,
+.katex .delim-size1,
+.katex .delim-size2,
+.katex .delim-size3,
+.katex .delim-size4 {
+  color: #60a5fa !important;
 }

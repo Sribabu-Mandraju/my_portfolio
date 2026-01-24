@@ -30,14 +30,16 @@ export const blogs = [
         file: "proxies.md",
         title: "Introduction to proxies",
         tags: ["blockchain", "solidity", "proxies"],
+        date: "2026-01-06",
         url:
           "https://raw.githubusercontent.com/Sribabu-Mandraju/my_portfolio/refs/heads/main/src/blogs_mds/Proxy.md",
       },
       {
-        id: "OpenCover insured vaults audit insights",
+        id: "openCoverInsuredVault_audit_Insights",
         file: "",
-        title: "Introduction to proxies",
-        tags: ["blockchain", "solidity", "proxies"],
+        title: "Open Cover Insured Vault - Audit Insights",
+        tags: ["blockchain", "solidity", "vaults"],
+        date:"2026-01-24",
         url:
           "https://raw.githubusercontent.com/Sribabu-Mandraju/my_portfolio/refs/heads/main/src/blogs_mds/coverVaultAuditInsights.md",
       },

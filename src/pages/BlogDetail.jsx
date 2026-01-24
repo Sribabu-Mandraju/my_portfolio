@@ -55,8 +55,8 @@ export default function BlogDetail() {
 
   return (
     <div className="flex flex-1 overflow-hidden flex-col">
-      <main className="flex-1 p-4 lg:p-6 overflow-y-auto">
-        <div className="max-w-7xl mx-auto">
+      <main className="flex-1  lg:p-6 overflow-y-auto">
+        <div className="max-w-7xl p-2 mx-auto">
           {/* Navigation */}
 
           {/* Back Button */}
@@ -111,17 +111,7 @@ export default function BlogDetail() {
           </div>
 
           {/* Footer Navigation */}
-          <div className=" rounded-xl  p-6">
-            <div className="flex flex-col sm:flex-row items-center justify-between">
-              <Link
-                to="/blogs"
-                className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors mb-4 sm:mb-0"
-              >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Blogs
-              </Link>
-            </div>
-          </div>
+        
         </div>
       </main>
     </div>

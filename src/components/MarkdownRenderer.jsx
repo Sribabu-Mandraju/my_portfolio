@@ -2,6 +2,8 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import {
@@ -22,6 +24,7 @@ import {
   Volume2,
 } from "lucide-react";
 import "github-markdown-css/github-markdown.css";
+import "katex/dist/katex.min.css";
 
 // Table of Contents Component
 function TableOfContents({ headings, activeId }) {
@@ -120,7 +123,7 @@ function CodeBlock({ className, children }) {
   const [isExpanded, setIsExpanded] = React.useState(false);
   const language = className ? className.replace("language-", "") : "";
   const isShell = /^(shell|bash|zsh|sh|console|terminal|cmd|powershell)$/i.test(
-    language
+    language,
   );
   const codeString = String(children).replace(/\n$/, "");
   const lineCount = codeString.split("\n").length;
@@ -402,33 +405,33 @@ function rewriteImageUrls(markdown) {
   // Handle various image path formats
   let result = markdown.replace(
     /src=["']public[\\/]([^"'>]+)["']/g,
-    'src="/$1"'
+    'src="/$1"',
   );
   result = result.replace(
     /src=["']\.\.\/images[\\/]([^"'>]+)["']/g,
-    'src="/images/$1"'
+    'src="/images/$1"',
   );
   result = result.replace(
     /src=["']\.\/images[\\/]([^"'>]+)["']/g,
-    'src="/images/$1"'
+    'src="/images/$1"',
   );
   result = result.replace(
     /src=["']images[\\/]([^"'>]+)["']/g,
-    'src="/images/$1"'
+    'src="/images/$1"',
   );
   // Handle markdown image syntax
   result = result.replace(/!\[([^\]]*)\]$$public\/([^)]+)$$/g, "![$1](/$2)");
   result = result.replace(
     /!\[([^\]]*)\]$$\.\.\/images\/([^)]+)$$/g,
-    "![$1](/images/$2)"
+    "![$1](/images/$2)",
   );
   result = result.replace(
     /!\[([^\]]*)\]$$\.\/images\/([^)]+)$$/g,
-    "![$1](/images/$2)"
+    "![$1](/images/$2)",
   );
   result = result.replace(
     /!\[([^\]]*)\]$$images\/([^)]+)$$/g,
-    "![$1](/images/$2)"
+    "![$1](/images/$2)",
   );
   return result;
 }
@@ -476,7 +479,7 @@ function MarkdownRenderer({ url }) {
           }
         });
       },
-      { rootMargin: "-20% 0% -35% 0%" }
+      { rootMargin: "-20% 0% -35% 0%" },
     );
 
     const headingElements = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
@@ -548,7 +551,7 @@ function MarkdownRenderer({ url }) {
         }
         return new URL(
           "/" + pathParts.join("/") + "/" + relativePath,
-          mdUrl.origin
+          mdUrl.origin,
         ).toString();
       } else {
         // Relative to current directory
@@ -599,46 +602,11 @@ function MarkdownRenderer({ url }) {
       {/* Desktop Layout with Left Sidebar */}
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Left Sidebar - Desktop Article Meta Info */}
-        <aside className="hidden lg:block lg:w-64 flex-shrink-0">
-          <div className="sticky top-6 space-y-6">
-            {/* Article Meta Info */}
-            <div className="bg-zinc-950/50 border border-zinc-900 rounded-lg p-4">
-              <h3 className="text-sm font-semibold text-gray-300 mb-3 flex items-center">
-                <BookOpen className="w-4 h-4 mr-2" />
-                Article Info
-              </h3>
-              <div className="space-y-3 text-sm text-gray-400">
-                <div className="flex items-center space-x-2">
-                  <Clock className="w-4 h-4" />
-                  <span>{readingTime} min read</span>
-                </div>
-                {/* <div className="flex items-center space-x-2">
-                  <Eye className="w-4 h-4" />
-                  <span>{content.split(" ").length} words</span>
-                </div> */}
-                {/* <a
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors duration-200"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  <span>View Source</span>
-                </a> */}
-              </div>
-            </div>
-
-            {/* Table of Contents - Desktop */}
-            <TableOfContents headings={headings} activeId={activeHeading} />
-          </div>
-        </aside>
 
         {/* Main Content */}
         <div className="flex-1 min-w-0">
           {/* Mobile Table of Contents */}
-          <div className="lg:hidden">
-            <TableOfContents headings={headings} activeId={activeHeading} />
-          </div>
+         
 
           {/* GitHub CSS Dark Theme Override */}
           <style>{`
@@ -731,7 +699,8 @@ function MarkdownRenderer({ url }) {
           <div className=" rounded-xl border border-zinc-900  lg:p-8 shadow-lg w-full">
             <div className="markdown-body">
               <ReactMarkdown
-                remarkPlugins={[remarkGfm]}
+                remarkPlugins={[remarkGfm, remarkMath]}
+                rehypePlugins={[rehypeKatex]}
                 components={{
                   code({ node, inline, className, children, ...props }) {
                     if (inline) {
