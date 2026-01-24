@@ -64,6 +64,10 @@ style attribute {
   background: transparent !important;
 }
 
+body{
+  background-color: #000000;
+}
+
 .markdown-body pre {
   background-color: transparent !important; /* or your preferred color */
   padding: 5px !important;
@@ -91,6 +95,9 @@ style attribute {
   text-align: center;
   overflow-x: auto;
   max-width: 100%;
+  /* Prevent layout shift during rendering */
+  min-height: 2rem;
+  contain: layout;
 }
 
 .katex-display > .katex {
@@ -104,6 +111,11 @@ style attribute {
   border: 1px solid rgba(113, 113, 122, 0.3);
   border-radius: 8px;
   padding: 1rem;
+}
+
+/* Prevent layout shifts for inline math */
+.katex {
+  contain: layout;
 }
 
 /* Mobile math responsiveness */

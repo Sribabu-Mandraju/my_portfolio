@@ -62,16 +62,87 @@ function ReadingProgress() {
   const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
+    // Find the actual scrollable container
+    const findScrollableContainer = () => {
+      // First try to find the main content area with overflow-y-auto
+      const mainElement = document.querySelector(
+        'main[aria-label="Main content"]',
+      );
+      if (mainElement && mainElement.scrollHeight > mainElement.clientHeight) {
+        return mainElement;
+      }
+
+      // Fallback to document scrolling
+      return window;
+    };
+
     const updateProgress = () => {
-      const scrollTop = window.scrollY;
-      const docHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (scrollTop / docHeight) * 100;
+      const scrollContainer = findScrollableContainer();
+
+      let scrollTop, scrollHeight, clientHeight;
+
+      if (scrollContainer === window) {
+        scrollTop = window.scrollY;
+        scrollHeight = document.documentElement.scrollHeight;
+        clientHeight = window.innerHeight;
+      } else {
+        scrollTop = scrollContainer.scrollTop;
+        scrollHeight = scrollContainer.scrollHeight;
+        clientHeight = scrollContainer.clientHeight;
+      }
+
+      const docHeight = scrollHeight - clientHeight;
+      // Ensure docHeight is positive to prevent division by zero
+      const validDocHeight = Math.max(docHeight, 1);
+      const progress = (scrollTop / validDocHeight) * 100;
       setProgress(Math.min(100, Math.max(0, progress)));
     };
 
-    window.addEventListener("scroll", updateProgress);
-    return () => window.removeEventListener("scroll", updateProgress);
+    // Initial calculation with delay for content to load
+    setTimeout(updateProgress, 100);
+
+    // Set up event listeners
+    const scrollContainer = findScrollableContainer();
+
+    if (scrollContainer === window) {
+      window.addEventListener("scroll", updateProgress);
+      window.addEventListener("resize", updateProgress);
+    } else {
+      scrollContainer.addEventListener("scroll", updateProgress);
+      window.addEventListener("resize", updateProgress);
+    }
+
+    // Use MutationObserver to detect when KaTeX equations are rendered
+    const observer = new MutationObserver(() => {
+      // Debounce the height recalculation
+      setTimeout(updateProgress, 150);
+    });
+
+    // Observe changes to the document body
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["style", "class"],
+    });
+
+    // Additional timeouts for KaTeX rendering
+    const timeouts = [
+      setTimeout(updateProgress, 300),
+      setTimeout(updateProgress, 800),
+      setTimeout(updateProgress, 1500),
+    ];
+
+    return () => {
+      if (scrollContainer === window) {
+        window.removeEventListener("scroll", updateProgress);
+      } else {
+        scrollContainer.removeEventListener("scroll", updateProgress);
+      }
+      window.removeEventListener("resize", updateProgress);
+      observer.disconnect();
+      timeouts.forEach((timeout) => clearTimeout(timeout));
+    };
   }, []);
 
   return (
@@ -606,7 +677,6 @@ function MarkdownRenderer({ url }) {
         {/* Main Content */}
         <div className="flex-1 min-w-0">
           {/* Mobile Table of Contents */}
-         
 
           {/* GitHub CSS Dark Theme Override */}
           <style>{`

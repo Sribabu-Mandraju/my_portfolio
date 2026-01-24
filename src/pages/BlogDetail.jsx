@@ -54,8 +54,8 @@ export default function BlogDetail() {
   };
 
   return (
-    <div className="flex flex-1 overflow-hidden flex-col">
-      <main className="flex-1  lg:p-6 overflow-y-auto">
+    <div className="flex flex-1 flex-col">
+      <main className="flex-1 lg:p-6">
         <div className="max-w-7xl p-2 mx-auto">
           {/* Navigation */}
 
@@ -111,7 +111,6 @@ export default function BlogDetail() {
           </div>
 
           {/* Footer Navigation */}
-        
         </div>
       </main>
     </div>
