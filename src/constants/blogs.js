@@ -43,6 +43,15 @@ export const blogs = [
         url:
           "https://raw.githubusercontent.com/Sribabu-Mandraju/my_portfolio/refs/heads/main/src/blogs_mds/coverVaultAuditInsights.md",
       },
+      {
+        id: "CREATE2_Uniswapv2",
+        file: "",
+        title: "Precomputing contract address using CREATE2",
+        tags: ["blockchain", "solidity", "vaults"],
+        date:"2026-01-25",
+        url:
+          "https://raw.githubusercontent.com/Sribabu-Mandraju/my_portfolio/refs/heads/main/src/blogs_mds/CREATE2.md",
+      },
     ],
     
   },
