@@ -52,6 +52,15 @@ export const blogs = [
         url:
           "https://raw.githubusercontent.com/Sribabu-Mandraju/my_portfolio/refs/heads/main/src/blogs_mds/CREATE2.md",
       },
+      {
+        id: "ERC20_Permit",
+        file: "",
+        title: "Gasless Transaction using ERC20 Permit",
+        tags: ["blockchain", "solidity", "ERC20"],
+        date:"2026-01-25",
+        url:
+          "https://raw.githubusercontent.com/Sribabu-Mandraju/my_portfolio/refs/heads/main/src/blogs_mds/ERC20Permit.md",
+      },
     ],
     
   },
