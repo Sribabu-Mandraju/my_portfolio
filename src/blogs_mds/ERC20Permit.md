@@ -267,7 +267,7 @@ It requires these three components for `ecrecover`.
 Later, anyone can submit:
 
 ```solidity
-pfunction permit(address owner,address spender,uint256 amount,uint256 nonce,uint256 deadline,uint8 v, bytes32 r, bytes32 s) external {
+function permit(address owner,address spender,uint256 amount,uint256 nonce,uint256 deadline,uint8 v, bytes32 r, bytes32 s) external {
         require(deadline >= block.timestamp,"invalid signature");
         bytes32 digest = keccak256(
             abi.encodePacked(
