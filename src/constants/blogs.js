@@ -61,6 +61,16 @@ export const blogs = [
         url:
           "https://raw.githubusercontent.com/Sribabu-Mandraju/my_portfolio/refs/heads/main/src/blogs_mds/ERC20Permit.md",
       },
+
+      {
+        id: "Spidex_AMM",
+        file: "",
+        title: "Spidex Decentralized AMM Protocol",
+        tags: ["blockchain", "solidity", "ERC20","uniswap-v2"],
+        date:"2026-02-13",
+        url:
+          "https://raw.githubusercontent.com/Sribabu-Mandraju/my_portfolio/refs/heads/main/src/blogs_mds/Spidex.md",
+      },
     ],
     
   },

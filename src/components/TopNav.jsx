@@ -13,6 +13,7 @@ export default function TopNav({ searchQuery, setSearchQuery }) {
       href: "https://www.linkedin.com/in/sribabu-mandraju-590524233",
       label: "LinkedIn",
     },
+    /////////
     {
       icon: FaXTwitter,
       href: "https://x.com/5R1B4BU",
